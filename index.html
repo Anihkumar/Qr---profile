@@ -79,11 +79,10 @@
 
 const SUPABASE_URL = "https://auoizmzyojlprmgfhuhf.supabase.co";
 
-const SUPABASE_KEY =
-  "sb_publishable_86ZOljALd-9xCiCTOgvpkA_HGTxCGgi";
+const SUPABASE_KEY = "sb_publishable_86ZOljALd-9xCiCTOgvpkA_HGTxCGgi";
 
-const QR_CODE =
-  new URLSearchParams(window.location.search).get("qr") || "TEST-001";
+const QR_CODE = new URLSearchParams(window.location.search)
+  .get("qr") || "TEST-001";
 
 
 async function loadProfile() {
@@ -94,22 +93,26 @@ async function loadProfile() {
 
     const url =
       SUPABASE_URL +
-      "/rest/v1/profiles" +
-      "?select=qr_code,name_1,name_2,photos(file_path)" +
-      "&qr_code=eq." +
+      "/rest/v1/profiles?select=qr_code,name_1,name_2,photos(file_path)&qr_code=eq." +
       encodeURIComponent(QR_CODE);
 
     const response = await fetch(url, {
       method: "GET",
       headers: {
-        "apikey": SUPABASE_KEY
+        "apikey": SUPABASE_KEY,
+        "Authorization": "Bearer " + SUPABASE_KEY
       }
     });
 
     if (!response.ok) {
+
       const errorText = await response.text();
-      console.error("Supabase error:", errorText);
-      throw new Error("Unable to load profile");
+
+      console.error("Supabase error:", response.status, errorText);
+
+      throw new Error(
+        "Supabase error " + response.status
+      );
     }
 
     const data = await response.json();
@@ -131,29 +134,18 @@ async function loadProfile() {
 
     let photoUrl = "";
 
-    let photo = profile.photos;
-
-    if (Array.isArray(photo)) {
-      photo = photo[0];
-    }
-
-    if (photo && photo.file_path) {
+    if (profile.photos && profile.photos.file_path) {
 
       photoUrl =
         SUPABASE_URL +
         "/storage/v1/object/public/Photos/" +
-        photo.file_path;
+        profile.photos.file_path;
     }
 
     box.innerHTML = `
       ${
         photoUrl
-        ? `<img
-             class="photo"
-             src="${photoUrl}"
-             alt="Profile Photo"
-             onerror="this.style.display='none'"
-           >`
+        ? `<img class="photo" src="${photoUrl}" alt="Profile Photo">`
         : ""
       }
 
@@ -163,7 +155,7 @@ async function loadProfile() {
       </h1>
 
       <div class="qr">
-        QR Code: ${profile.qr_code || QR_CODE}
+        QR Code: ${profile.qr_code}
       </div>
 
       <div class="names">
@@ -182,7 +174,6 @@ async function loadProfile() {
     `;
   }
 }
-
 
 loadProfile();
 
