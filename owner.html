@@ -1,205 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owner Dashboard</title>
 
-  <title>Owner Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f6fa;
+  color:#111827;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f6fa;
-      color: #111827;
-    }
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:16px;
+}
 
-    .container {
-      width: 100%;
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
+.topbar,.card{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 4px 15px rgba(0,0,0,.04);
+}
 
-    .topbar {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-    }
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
 
-    .topbar h1 {
-      font-size: 22px;
-    }
+h1{font-size:22px}
+h2{font-size:19px;margin-bottom:16px}
 
-    .topbar p {
-      margin-top: 5px;
-      color: #6b7280;
-      font-size: 13px;
-    }
+.small{
+  color:#6b7280;
+  font-size:13px;
+  margin-top:5px;
+}
 
-    .logout {
-      border: none;
-      background: #111827;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 9px;
-      cursor: pointer;
-    }
+label{
+  display:block;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
 
-    .card {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.04);
-    }
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #d1d5db;
+  border-radius:9px;
+  margin-bottom:14px;
+  font-size:15px;
+  outline:none;
+}
 
-    .card h2 {
-      font-size: 19px;
-      margin-bottom: 16px;
-    }
+input:focus{border-color:#6366f1}
 
-    label {
-      display: block;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 7px;
-    }
+button{
+  cursor:pointer;
+}
 
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d1d5db;
-      border-radius: 9px;
-      margin-bottom: 14px;
-      font-size: 15px;
-      outline: none;
-    }
+.primary{
+  width:100%;
+  border:0;
+  padding:13px;
+  border-radius:9px;
+  background:linear-gradient(135deg,#6366f1,#7c3aed);
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+}
 
-    input:focus {
-      border-color: #6366f1;
-    }
+.logout{
+  border:0;
+  background:#111827;
+  color:white;
+  padding:10px 15px;
+  border-radius:9px;
+}
 
-    .primary {
-      width: 100%;
-      border: none;
-      padding: 13px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, #6366f1, #7c3aed);
-      color: white;
-      font-weight: bold;
-      font-size: 15px;
-      cursor: pointer;
-    }
+.secondary{
+  border:1px solid #d1d5db;
+  background:white;
+  padding:11px 15px;
+  border-radius:9px;
+  font-weight:bold;
+}
 
-    .upload-box {
-      border: 2px dashed #d1d5db;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 12px;
-    }
+.message{
+  display:none;
+  margin-top:12px;
+  padding:11px;
+  border-radius:9px;
+  font-size:14px;
+}
 
-    .upload-box input {
-      margin-top: 12px;
-      margin-bottom: 0;
-    }
+.success{
+  display:block;
+  background:#dcfce7;
+  color:#166534;
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
+.error{
+  display:block;
+  background:#fee2e2;
+  color:#991b1b;
+}
 
-    .photo {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      overflow: hidden;
-    }
+.profile-list{
+  display:grid;
+  gap:10px;
+  margin-bottom:18px;
+}
 
-    .photo img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      display: block;
-    }
+.profile-item{
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:14px;
+  background:#fafafa;
+  cursor:pointer;
+}
 
-    .delete-btn {
-      width: 100%;
-      border: none;
-      padding: 10px;
-      background: #fee2e2;
-      color: #b91c1c;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.profile-item.active{
+  border-color:#6366f1;
+  background:#f5f3ff;
+}
 
-    .message {
-      display: none;
-      margin-top: 12px;
-      padding: 11px;
-      border-radius: 9px;
-      font-size: 14px;
-    }
+.profile-item strong{
+  display:block;
+  margin-bottom:4px;
+}
 
-    .success {
-      background: #dcfce7;
-      color: #166534;
-    }
+.profile-item span{
+  color:#6b7280;
+  font-size:13px;
+}
 
-    .error {
-      background: #fee2e2;
-      color: #991b1b;
-    }
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
 
-    .loading {
-      color: #6b7280;
-      text-align: center;
-      padding: 20px;
-    }
+.photo{
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  overflow:hidden;
+}
 
-    @media (max-width: 600px) {
-      .container {
-        padding: 12px;
-      }
+.photo img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  display:block;
+}
 
-      .topbar {
-        align-items: flex-start;
-      }
+.delete-btn{
+  width:100%;
+  border:0;
+  padding:10px;
+  background:#fee2e2;
+  color:#b91c1c;
+  font-weight:bold;
+}
 
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
+.upload-box{
+  border:2px dashed #d1d5db;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+  margin-bottom:12px;
+}
 
-      .photo img {
-        height: 150px;
-      }
-    }
-  </style>
+.loading{
+  text-align:center;
+  color:#6b7280;
+  padding:20px;
+}
+
+.hidden{
+  display:none;
+}
+
+@media(max-width:600px){
+  .container{padding:12px}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .photo img{height:150px}
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
+  <!-- TOP BAR -->
+
   <div class="topbar">
 
     <div>
       <h1>Owner Dashboard</h1>
-      <p id="ownerEmail">Checking login...</p>
+      <p class="small" id="ownerEmail">Checking login...</p>
     </div>
 
     <button class="logout" id="logoutBtn">
@@ -209,13 +219,87 @@
   </div>
 
 
-  <!-- PROFILE DETAILS -->
+  <!-- CREATE PROFILE -->
 
   <div class="card">
 
+    <h2>➕ Create New Profile</h2>
+
+    <label>QR Code</label>
+
+    <input
+      id="newQr"
+      type="text"
+      placeholder="Example: TEST-002"
+    >
+
+    <label>Name 1</label>
+
+    <input
+      id="newName1"
+      type="text"
+      placeholder="First person name"
+    >
+
+    <label>Name 2</label>
+
+    <input
+      id="newName2"
+      type="text"
+      placeholder="Second person name"
+    >
+
+    <label>Profile Password</label>
+
+    <input
+      id="newPassword"
+      type="password"
+      placeholder="Password for this profile"
+    >
+
+    <button
+      class="primary"
+      id="createProfileBtn"
+    >
+      Create Profile
+    </button>
+
+    <div
+      id="createMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+
+  <!-- PROFILE SELECTOR -->
+
+  <div class="card">
+
+    <h2>Profiles</h2>
+
+    <div
+      id="profileList"
+      class="profile-list"
+    >
+      <div class="loading">
+        Loading profiles...
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- PROFILE DETAILS -->
+
+  <div
+    class="card"
+    id="managementSection"
+  >
+
     <h2>Profile Details</h2>
 
-    <label>Profile</label>
+    <label>QR Code</label>
 
     <input
       id="profileCode"
@@ -254,15 +338,16 @@
 
   <!-- UPLOAD -->
 
-  <div class="card">
+  <div
+    class="card"
+    id="uploadSection"
+  >
 
-    <h2>Upload Photo</h2>
+    <h2>📸 Upload Photo</h2>
 
     <div class="upload-box">
 
-      <div>
-        Select a photo to upload
-      </div>
+      <div>Select a photo to upload</div>
 
       <input
         type="file"
@@ -289,16 +374,19 @@
 
   <!-- GALLERY -->
 
-  <div class="card">
+  <div
+    class="card"
+    id="gallerySection"
+  >
 
-    <h2>Manage Photos</h2>
+    <h2>🖼️ Manage Photos</h2>
 
     <div
       id="gallery"
       class="gallery"
     >
       <div class="loading">
-        Loading photos...
+        Select a profile.
       </div>
     </div>
 
@@ -330,6 +418,7 @@ const supabase =
 
 let currentUser = null;
 let currentProfile = null;
+let allProfiles = [];
 
 
 /* =========================
@@ -338,6 +427,9 @@ let currentProfile = null;
 
 const ownerEmail =
   document.getElementById("ownerEmail");
+
+const profileList =
+  document.getElementById("profileList");
 
 const profileCode =
   document.getElementById("profileCode");
@@ -363,7 +455,7 @@ function showMessage(
   element,
   text,
   success
-) {
+){
 
   element.textContent = text;
 
@@ -371,28 +463,23 @@ function showMessage(
     "message " +
     (success ? "success" : "error");
 
-  element.style.display =
-    "block";
-
 }
 
 
 /* =========================
-   CHECK LOGIN
+   LOGIN CHECK
 ========================= */
 
-async function checkLogin() {
+async function checkLogin(){
 
   const {
     data,
     error
-  } = await supabase.auth.getUser();
+  } =
+  await supabase.auth.getUser();
 
 
-  if (
-    error ||
-    !data.user
-  ) {
+  if(error || !data.user){
 
     window.location.href =
       "owner.html";
@@ -407,21 +494,27 @@ async function checkLogin() {
   ownerEmail.textContent =
     currentUser.email;
 
-
   return true;
 }
 
 
 /* =========================
-   LOAD PROFILE
+   LOAD ALL PROFILES
 ========================= */
 
-async function loadProfile() {
+async function loadProfiles(){
+
+  profileList.innerHTML =
+    `<div class="loading">
+      Loading profiles...
+    </div>`;
+
 
   const {
     data,
     error
-  } = await supabase
+  } =
+  await supabase
     .from("profiles")
     .select(
       "id, qr_code, name_1, name_2"
@@ -430,44 +523,128 @@ async function loadProfile() {
       "owner_user_id",
       currentUser.id
     )
-    .limit(1)
-    .maybeSingle();
+    .order(
+      "created_at",
+      { ascending:true }
+    );
 
 
-  if (error) {
+  if(error){
 
     console.error(error);
 
-    alert(
-      "Could not load profile."
-    );
+    profileList.innerHTML =
+      `<div class="loading">
+        Could not load profiles.
+      </div>`;
 
     return;
   }
 
 
-  if (!data) {
+  allProfiles =
+    data || [];
 
-    alert(
-      "No profile is linked to this owner."
-    );
+
+  if(allProfiles.length === 0){
+
+    profileList.innerHTML =
+      `<div class="loading">
+        No profiles created yet.
+      </div>`;
 
     return;
   }
 
+
+  profileList.innerHTML = "";
+
+
+  allProfiles.forEach(
+    profile => {
+
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "profile-item";
+
+
+      item.innerHTML = `
+        <strong>
+          ${escapeHtml(profile.name_1)}
+          ❤️
+          ${escapeHtml(profile.name_2)}
+        </strong>
+
+        <span>
+          QR: ${escapeHtml(profile.qr_code)}
+        </span>
+      `;
+
+
+      item.onclick =
+        () => selectProfile(profile);
+
+
+      profileList.appendChild(item);
+
+    }
+  );
+
+
+  if(!currentProfile){
+
+    selectProfile(
+      allProfiles[0]
+    );
+
+  }
+
+}
+
+
+/* =========================
+   SELECT PROFILE
+========================= */
+
+async function selectProfile(profile){
 
   currentProfile =
-    data;
+    profile;
+
+
+  document
+    .querySelectorAll(".profile-item")
+    .forEach(item =>
+      item.classList.remove("active")
+    );
+
+
+  const index =
+    allProfiles.findIndex(
+      p => p.id === profile.id
+    );
+
+
+  if(index >= 0){
+
+    document
+      .querySelectorAll(".profile-item")
+      [index]
+      .classList.add("active");
+
+  }
 
 
   profileCode.value =
-    data.qr_code;
+    profile.qr_code;
 
   name1.value =
-    data.name_1;
+    profile.name_1;
 
   name2.value =
-    data.name_2;
+    profile.name_2;
 
 
   await loadPhotos();
@@ -476,10 +653,262 @@ async function loadProfile() {
 
 
 /* =========================
+   SAVE PROFILE
+========================= */
+
+document
+.getElementById("saveProfile")
+.addEventListener(
+  "click",
+  async () => {
+
+    if(!currentProfile){
+
+      return;
+    }
+
+
+    const newName1 =
+      name1.value.trim();
+
+    const newName2 =
+      name2.value.trim();
+
+
+    if(!newName1 || !newName2){
+
+      showMessage(
+        document.getElementById(
+          "profileMessage"
+        ),
+        "Both names are required.",
+        false
+      );
+
+      return;
+    }
+
+
+    const {
+      error
+    } =
+    await supabase
+      .from("profiles")
+      .update({
+        name_1:newName1,
+        name_2:newName2
+      })
+      .eq(
+        "id",
+        currentProfile.id
+      );
+
+
+    if(error){
+
+      console.error(error);
+
+      showMessage(
+        document.getElementById(
+          "profileMessage"
+        ),
+        "Could not update profile.",
+        false
+      );
+
+      return;
+    }
+
+
+    currentProfile.name_1 =
+      newName1;
+
+    currentProfile.name_2 =
+      newName2;
+
+
+    showMessage(
+      document.getElementById(
+        "profileMessage"
+      ),
+      "Profile details saved successfully.",
+      true
+    );
+
+
+    await loadProfiles();
+
+  }
+);
+
+
+/* =========================
+   CREATE PROFILE
+========================= */
+
+document
+.getElementById("createProfileBtn")
+.addEventListener(
+  "click",
+  async () => {
+
+    const qr =
+      document
+        .getElementById("newQr")
+        .value
+        .trim();
+
+    const n1 =
+      document
+        .getElementById("newName1")
+        .value
+        .trim();
+
+    const n2 =
+      document
+        .getElementById("newName2")
+        .value
+        .trim();
+
+    const password =
+      document
+        .getElementById("newPassword")
+        .value;
+
+
+    if(!qr || !n1 || !n2 || !password){
+
+      showMessage(
+        document.getElementById(
+          "createMessage"
+        ),
+        "All fields are required.",
+        false
+      );
+
+      return;
+    }
+
+
+    if(password.length < 4){
+
+      showMessage(
+        document.getElementById(
+          "createMessage"
+        ),
+        "Password must be at least 4 characters.",
+        false
+      );
+
+      return;
+    }
+
+
+    const button =
+      document.getElementById(
+        "createProfileBtn"
+      );
+
+
+    button.disabled = true;
+
+    button.textContent =
+      "Creating...";
+
+
+    const {
+      data,
+      error
+    } =
+    await supabase.rpc(
+      "create_profile",
+      {
+        p_qr_code:qr,
+        p_name_1:n1,
+        p_name_2:n2,
+        p_password:password
+      }
+    );
+
+
+    button.disabled = false;
+
+    button.textContent =
+      "Create Profile";
+
+
+    if(error){
+
+      console.error(error);
+
+      showMessage(
+        document.getElementById(
+          "createMessage"
+        ),
+        error.message ||
+        "Could not create profile.",
+        false
+      );
+
+      return;
+    }
+
+
+    showMessage(
+      document.getElementById(
+        "createMessage"
+      ),
+      "Profile created successfully.",
+      true
+    );
+
+
+    document
+      .getElementById("newQr")
+      .value = "";
+
+    document
+      .getElementById("newName1")
+      .value = "";
+
+    document
+      .getElementById("newName2")
+      .value = "";
+
+    document
+      .getElementById("newPassword")
+      .value = "";
+
+
+    await loadProfiles();
+
+
+    if(data && data.length){
+
+      selectProfile(data[0]);
+
+    }
+
+  }
+);
+
+
+/* =========================
    LOAD PHOTOS
 ========================= */
 
-async function loadPhotos() {
+async function loadPhotos(){
+
+  if(!currentProfile){
+
+    gallery.innerHTML =
+      `<div class="loading">
+        Select a profile.
+      </div>`;
+
+    return;
+  }
+
 
   gallery.innerHTML =
     `<div class="loading">
@@ -488,12 +917,13 @@ async function loadPhotos() {
 
 
   const {
-    data: photos,
+    data:photos,
     error
-  } = await supabase
+  } =
+  await supabase
     .from("photos")
     .select(
-      "id, file_path, uploaded_at"
+      "id,file_path,uploaded_at"
     )
     .eq(
       "profile_id",
@@ -501,13 +931,11 @@ async function loadPhotos() {
     )
     .order(
       "uploaded_at",
-      {
-        ascending: false
-      }
+      {ascending:false}
     );
 
 
-  if (error) {
+  if(error){
 
     console.error(error);
 
@@ -520,10 +948,7 @@ async function loadPhotos() {
   }
 
 
-  if (
-    !photos ||
-    photos.length === 0
-  ) {
+  if(!photos || photos.length === 0){
 
     gallery.innerHTML =
       `<div class="loading">
@@ -537,26 +962,21 @@ async function loadPhotos() {
   gallery.innerHTML = "";
 
 
-  for (
-    const photo of photos
-  ) {
+  for(const photo of photos){
 
     const {
-      data: signed,
-      error: signedError
+      data:signed,
+      error:signedError
     } =
-      await supabase.storage
-        .from("Photos")
-        .createSignedUrl(
-          photo.file_path,
-          3600
-        );
+    await supabase.storage
+      .from("Photos")
+      .createSignedUrl(
+        photo.file_path,
+        3600
+      );
 
 
-    if (
-      signedError ||
-      !signed
-    ) {
+    if(signedError || !signed){
 
       continue;
     }
@@ -604,263 +1024,183 @@ async function loadPhotos() {
 
 
 /* =========================
-   SAVE PROFILE
+   UPLOAD
 ========================= */
 
 document
-  .getElementById("saveProfile")
-  .addEventListener(
-    "click",
-    async () => {
+.getElementById("uploadBtn")
+.addEventListener(
+  "click",
+  async () => {
 
-      const newName1 =
-        name1.value.trim();
+    if(!currentProfile){
 
-      const newName2 =
-        name2.value.trim();
-
-
-      if (
-        !newName1 ||
-        !newName2
-      ) {
-
-        showMessage(
-          document.getElementById(
-            "profileMessage"
-          ),
-          "Both names are required.",
-          false
-        );
-
-        return;
-      }
+      return;
+    }
 
 
-      const {
-        error
-      } = await supabase
-        .from("profiles")
-        .update({
-          name_1: newName1,
-          name_2: newName2
-        })
-        .eq(
-          "id",
-          currentProfile.id
-        );
+    const file =
+      photoInput.files[0];
 
 
-      if (error) {
-
-        console.error(error);
-
-        showMessage(
-          document.getElementById(
-            "profileMessage"
-          ),
-          "Could not update profile.",
-          false
-        );
-
-        return;
-      }
-
+    if(!file){
 
       showMessage(
         document.getElementById(
-          "profileMessage"
+          "uploadMessage"
         ),
-        "Profile details saved successfully.",
-        true
+        "Please select a photo first.",
+        false
       );
 
+      return;
     }
-  );
 
 
-/* =========================
-   UPLOAD PHOTO
-========================= */
+    if(!file.type.startsWith("image/")){
 
-document
-  .getElementById("uploadBtn")
-  .addEventListener(
-    "click",
-    async () => {
+      showMessage(
+        document.getElementById(
+          "uploadMessage"
+        ),
+        "Only image files are allowed.",
+        false
+      );
 
-      const file =
-        photoInput.files[0];
-
-
-      if (!file) {
-
-        showMessage(
-          document.getElementById(
-            "uploadMessage"
-          ),
-          "Please select a photo first.",
-          false
-        );
-
-        return;
-      }
+      return;
+    }
 
 
-      if (!file.type.startsWith("image/")) {
-
-        showMessage(
-          document.getElementById(
-            "uploadMessage"
-          ),
-          "Only image files are allowed.",
-          false
-        );
-
-        return;
-      }
+    const extension =
+      file.name
+        .split(".")
+        .pop()
+        .toLowerCase();
 
 
-      const extension =
-        file.name
-          .split(".")
-          .pop()
-          .toLowerCase();
+    const fileName =
+      `${crypto.randomUUID()}.${extension}`;
 
 
-      const fileName =
-        `${crypto.randomUUID()}.${extension}`;
+    const filePath =
+      `${currentProfile.qr_code}/${fileName}`;
 
 
-      const filePath =
-        `${currentProfile.qr_code}/${fileName}`;
+    const {
+      error:uploadError
+    } =
+    await supabase.storage
+      .from("Photos")
+      .upload(
+        filePath,
+        file,
+        {
+          contentType:file.type,
+          upsert:false
+        }
+      );
 
 
-      const {
-        error: uploadError
-      } =
-        await supabase.storage
-          .from("Photos")
-          .upload(
-            filePath,
-            file,
-            {
-              contentType:
-                file.type,
-              upsert: false
-            }
-          );
+    if(uploadError){
+
+      console.error(uploadError);
+
+      showMessage(
+        document.getElementById(
+          "uploadMessage"
+        ),
+        "Photo upload failed.",
+        false
+      );
+
+      return;
+    }
 
 
-      if (uploadError) {
-
-        console.error(uploadError);
-
-        showMessage(
-          document.getElementById(
-            "uploadMessage"
-          ),
-          "Photo upload failed.",
-          false
-        );
-
-        return;
-      }
+    const {
+      error:dbError
+    } =
+    await supabase
+      .from("photos")
+      .insert({
+        profile_id:
+          currentProfile.id,
+        file_path:
+          filePath
+      });
 
 
-      const {
-        error: dbError
-      } =
-        await supabase
-          .from("photos")
-          .insert({
-            profile_id:
-              currentProfile.id,
+    if(dbError){
 
-            file_path:
-              filePath
-          });
+      console.error(dbError);
 
-
-      if (dbError) {
-
-        console.error(dbError);
-
-        /*
-          Remove uploaded file if
-          database insert fails.
-        */
-
-        await supabase.storage
-          .from("Photos")
-          .remove([
-            filePath
-          ]);
-
-
-        showMessage(
-          document.getElementById(
-            "uploadMessage"
-          ),
-          "Photo database record could not be created.",
-          false
-        );
-
-        return;
-      }
-
-
-      photoInput.value = "";
+      await supabase.storage
+        .from("Photos")
+        .remove([filePath]);
 
 
       showMessage(
         document.getElementById(
           "uploadMessage"
         ),
-        "Photo uploaded successfully.",
-        true
+        "Could not save photo record.",
+        false
       );
 
-
-      await loadPhotos();
-
+      return;
     }
-  );
 
 
-/* =========================
-   DELETE PHOTO
-========================= */
+    photoInput.value = "";
 
-async function deletePhoto(photo) {
 
-  const confirmed =
-    confirm(
-      "Are you sure you want to delete this photo?"
+    showMessage(
+      document.getElementById(
+        "uploadMessage"
+      ),
+      "Photo uploaded successfully.",
+      true
     );
 
 
-  if (!confirmed) {
+    await loadPhotos();
+
+  }
+);
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function deletePhoto(photo){
+
+  if(
+    !confirm(
+      "Are you sure you want to delete this photo?"
+    )
+  ){
+
     return;
   }
 
 
   const {
-    error: storageError
+    error:storageError
   } =
-    await supabase.storage
-      .from("Photos")
-      .remove([
-        photo.file_path
-      ]);
+  await supabase.storage
+    .from("Photos")
+    .remove([
+      photo.file_path
+    ]);
 
 
-  if (storageError) {
+  if(storageError){
 
     console.error(storageError);
 
     alert(
-      "Could not delete photo from storage."
+      "Could not delete photo."
     );
 
     return;
@@ -868,23 +1208,23 @@ async function deletePhoto(photo) {
 
 
   const {
-    error: dbError
+    error:dbError
   } =
-    await supabase
-      .from("photos")
-      .delete()
-      .eq(
-        "id",
-        photo.id
-      );
+  await supabase
+    .from("photos")
+    .delete()
+    .eq(
+      "id",
+      photo.id
+    );
 
 
-  if (dbError) {
+  if(dbError){
 
     console.error(dbError);
 
     alert(
-      "Photo file was deleted, but database record could not be removed."
+      "Photo database record could not be deleted."
     );
 
     return;
@@ -901,18 +1241,34 @@ async function deletePhoto(photo) {
 ========================= */
 
 document
-  .getElementById("logoutBtn")
-  .addEventListener(
-    "click",
-    async () => {
+.getElementById("logoutBtn")
+.addEventListener(
+  "click",
+  async () => {
 
-      await supabase.auth.signOut();
+    await supabase.auth.signOut();
 
-      window.location.href =
-        "owner.html";
+    window.location.href =
+      "owner.html";
 
-    }
-  );
+  }
+);
+
+
+/* =========================
+   HTML ESCAPE
+========================= */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
 
 
 /* =========================
@@ -923,9 +1279,9 @@ const loggedIn =
   await checkLogin();
 
 
-if (loggedIn) {
+if(loggedIn){
 
-  await loadProfile();
+  await loadProfiles();
 
 }
 
