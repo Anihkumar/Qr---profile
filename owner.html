@@ -2,507 +2,439 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Owner Dashboard</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --purple:#6d5dfc;
-  --purple2:#8b5cf6;
-  --bg:#f7f8fc;
-  --card:#ffffff;
-  --text:#171923;
-  --muted:#737784;
-  --border:#e8e9ef;
-  --danger:#ef4444;
-  --success:#16a34a;
+ --purple:#6d5dfc;
+ --purple2:#8b5cf6;
+ --bg:#f7f8fc;
+ --card:#fff;
+ --text:#171923;
+ --muted:#737784;
+ --border:#e8e9ef;
+ --danger:#ef4444;
+ --success:#16a34a;
 }
 
 body{
-  font-family:Inter,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+ font-family:Inter,Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
 }
 
-button,input{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-/* ================= HEADER ================= */
+button,input{font:inherit}
+button{cursor:pointer}
 
 .header{
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  position:sticky;
-  top:0;
-  z-index:100;
+ background:#fff;
+ border-bottom:1px solid var(--border);
+ position:sticky;
+ top:0;
+ z-index:100;
 }
 
 .header-inner{
-  max-width:1180px;
-  margin:auto;
-  height:72px;
-  padding:0 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+ max-width:1180px;
+ margin:auto;
+ height:72px;
+ padding:0 22px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
 }
 
 .brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
+ display:flex;
+ align-items:center;
+ gap:12px;
 }
 
 .brand-icon{
-  width:42px;
-  height:42px;
-  border-radius:13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:20px;
-  background:linear-gradient(135deg,var(--purple),var(--purple2));
-  box-shadow:0 7px 18px rgba(109,93,252,.25);
+ width:42px;
+ height:42px;
+ border-radius:13px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ color:#fff;
+ font-size:20px;
+ background:linear-gradient(135deg,var(--purple),var(--purple2));
+ box-shadow:0 7px 18px rgba(109,93,252,.25);
 }
 
-.brand h1{
-  font-size:18px;
-}
-
+.brand h1{font-size:18px}
 .brand p{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:2px;
+ font-size:12px;
+ color:var(--muted);
+ margin-top:2px;
 }
 
 .logout{
-  border:1px solid var(--border);
-  background:white;
-  color:#444;
-  padding:9px 14px;
-  border-radius:10px;
-  font-size:13px;
+ border:1px solid var(--border);
+ background:#fff;
+ color:#444;
+ padding:9px 14px;
+ border-radius:10px;
+ font-size:13px;
 }
-
-/* ================= LAYOUT ================= */
 
 .layout{
-  max-width:1180px;
-  margin:auto;
-  padding:26px 22px 50px;
+ max-width:1180px;
+ margin:auto;
+ padding:26px 22px 50px;
 }
 
-.welcome{
-  margin-bottom:25px;
-}
-
+.welcome{margin-bottom:25px}
 .welcome h2{
-  font-size:27px;
-  margin-bottom:6px;
+ font-size:27px;
+ margin-bottom:6px;
 }
-
 .welcome p{
-  color:var(--muted);
-  font-size:14px;
+ color:var(--muted);
+ font-size:14px;
 }
-
-/* ================= STATS ================= */
 
 .stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-bottom:25px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+ margin-bottom:25px;
 }
 
 .stat{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
-  display:flex;
-  align-items:center;
-  gap:14px;
+ background:#fff;
+ border:1px solid var(--border);
+ border-radius:16px;
+ padding:20px;
+ display:flex;
+ align-items:center;
+ gap:14px;
 }
 
 .stat-icon{
-  width:46px;
-  height:46px;
-  border-radius:13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#f1efff;
-  font-size:21px;
+ width:46px;
+ height:46px;
+ border-radius:13px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#f1efff;
+ font-size:21px;
 }
 
 .stat-number{
-  font-size:24px;
-  font-weight:700;
+ font-size:24px;
+ font-weight:700;
 }
 
 .stat-label{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
+ color:var(--muted);
+ font-size:12px;
+ margin-top:3px;
 }
-
-/* ================= SECTION ================= */
 
 .section-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:15px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin-bottom:15px;
 }
 
-.section-head h2{
-  font-size:20px;
-}
+.section-head h2{font-size:20px}
 
 .primary{
-  border:0;
-  color:white;
-  background:linear-gradient(135deg,var(--purple),var(--purple2));
-  padding:11px 16px;
-  border-radius:10px;
-  font-weight:600;
-  box-shadow:0 7px 18px rgba(109,93,252,.18);
+ border:0;
+ color:#fff;
+ background:linear-gradient(135deg,var(--purple),var(--purple2));
+ padding:11px 16px;
+ border-radius:10px;
+ font-weight:600;
+ box-shadow:0 7px 18px rgba(109,93,252,.18);
 }
 
-/* ================= PROFILES ================= */
+.primary:disabled{
+ opacity:.6;
+ cursor:not-allowed;
+}
 
 .profile-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:16px;
 }
 
 .profile-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:18px;
-  transition:.2s;
+ background:#fff;
+ border:1px solid var(--border);
+ border-radius:17px;
+ padding:18px;
+ transition:.2s;
 }
 
 .profile-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 12px 30px rgba(20,20,40,.07);
+ transform:translateY(-2px);
+ box-shadow:0 12px 30px rgba(20,20,40,.07);
 }
 
 .couple-avatar{
-  width:54px;
-  height:54px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#eeeaff,#f5efff);
-  font-size:25px;
-  margin-bottom:14px;
+ width:54px;
+ height:54px;
+ border-radius:16px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:linear-gradient(135deg,#eeeaff,#f5efff);
+ font-size:25px;
+ margin-bottom:14px;
 }
 
 .profile-card h3{
-  font-size:17px;
-  margin-bottom:6px;
+ font-size:17px;
+ margin-bottom:6px;
 }
 
 .qr-code{
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:16px;
+ color:var(--muted);
+ font-size:12px;
+ margin-bottom:16px;
 }
 
 .profile-meta{
-  border-top:1px solid var(--border);
-  padding-top:13px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+ border-top:1px solid var(--border);
+ padding-top:13px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
 }
 
 .photo-count{
-  font-size:12px;
-  color:var(--muted);
+ font-size:12px;
+ color:var(--muted);
 }
 
 .manage{
-  border:0;
-  background:#f1efff;
-  color:#5b4de7;
-  padding:8px 11px;
-  border-radius:8px;
-  font-size:12px;
-  font-weight:600;
+ border:0;
+ background:#f1efff;
+ color:#5b4de7;
+ padding:8px 11px;
+ border-radius:8px;
+ font-size:12px;
+ font-weight:600;
 }
-
-/* ================= EMPTY ================= */
 
 .empty{
-  background:#fff;
-  border:1px dashed #d9dbe5;
-  border-radius:16px;
-  padding:40px 20px;
-  text-align:center;
-  color:var(--muted);
-}
-
-/* ================= MODAL ================= */
-
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(15,17,25,.55);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-  z-index:500;
-}
-
-.modal{
-  width:100%;
-  max-width:720px;
-  max-height:90vh;
-  overflow:auto;
-  background:#fff;
-  border-radius:20px;
-  box-shadow:0 25px 70px rgba(0,0,0,.2);
-}
-
-.modal-head{
-  padding:20px;
-  border-bottom:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.modal-head h2{
-  font-size:19px;
-}
-
-.close{
-  width:34px;
-  height:34px;
-  border:0;
-  background:#f3f4f6;
-  border-radius:9px;
-  font-size:20px;
-}
-
-.modal-body{
-  padding:20px;
-}
-
-/* ================= TABS ================= */
-
-.tabs{
-  display:flex;
-  gap:5px;
-  background:#f5f5f8;
-  padding:4px;
-  border-radius:11px;
-  margin-bottom:20px;
-}
-
-.tab{
-  flex:1;
-  border:0;
-  background:transparent;
-  padding:10px;
-  border-radius:8px;
-  color:var(--muted);
-  font-size:13px;
-}
-
-.tab.active{
-  background:#fff;
-  color:var(--purple);
-  font-weight:700;
-  box-shadow:0 2px 6px rgba(0,0,0,.06);
-}
-
-.panel{
-  display:none;
-}
-
-.panel.active{
-  display:block;
-}
-
-/* ================= FORM ================= */
-
-label{
-  display:block;
-  font-size:13px;
-  font-weight:600;
-  margin-bottom:7px;
-}
-
-input{
-  width:100%;
-  padding:12px;
-  border:1px solid #dfe1e8;
-  border-radius:9px;
-  outline:none;
-  margin-bottom:15px;
-}
-
-input:focus{
-  border-color:var(--purple);
-}
-
-.readonly{
-  background:#f5f6f8;
-  color:#777;
-}
-
-/* ================= UPLOAD ================= */
-
-.upload{
-  border:2px dashed #dddfea;
-  border-radius:13px;
-  padding:24px;
-  text-align:center;
-  margin-bottom:13px;
-}
-
-.upload p{
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:12px;
-}
-
-.upload input{
-  border:0;
-  padding:0;
-  margin:0;
-}
-
-/* ================= GALLERY ================= */
-
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.photo{
-  position:relative;
-  border-radius:12px;
-  overflow:hidden;
-  background:#f4f4f6;
-  aspect-ratio:1;
-}
-
-.photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.delete{
-  position:absolute;
-  right:7px;
-  top:7px;
-  width:32px;
-  height:32px;
-  border:0;
-  border-radius:9px;
-  background:rgba(255,255,255,.92);
-  color:var(--danger);
-  font-size:15px;
-}
-
-/* ================= MESSAGE ================= */
-
-.message{
-  display:none;
-  padding:11px;
-  border-radius:9px;
-  margin-top:12px;
-  font-size:13px;
-}
-
-.message.success{
-  display:block;
-  background:#dcfce7;
-  color:#166534;
-}
-
-.message.error{
-  display:block;
-  background:#fee2e2;
-  color:#991b1b;
+ background:#fff;
+ border:1px dashed #d9dbe5;
+ border-radius:16px;
+ padding:40px 20px;
+ text-align:center;
+ color:var(--muted);
 }
 
 .loading{
-  text-align:center;
-  color:var(--muted);
-  padding:30px;
+ text-align:center;
+ color:var(--muted);
+ padding:30px;
 }
 
-/* ================= MOBILE ================= */
+.modal-overlay{
+ position:fixed;
+ inset:0;
+ background:rgba(15,17,25,.55);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:15px;
+ z-index:500;
+}
+
+.modal{
+ width:100%;
+ max-width:720px;
+ max-height:90vh;
+ overflow:auto;
+ background:#fff;
+ border-radius:20px;
+ box-shadow:0 25px 70px rgba(0,0,0,.2);
+}
+
+.modal-head{
+ padding:20px;
+ border-bottom:1px solid var(--border);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+}
+
+.modal-head h2{font-size:19px}
+
+.close{
+ width:34px;
+ height:34px;
+ border:0;
+ background:#f3f4f6;
+ border-radius:9px;
+ font-size:20px;
+}
+
+.modal-body{padding:20px}
+
+.tabs{
+ display:flex;
+ gap:5px;
+ background:#f5f5f8;
+ padding:4px;
+ border-radius:11px;
+ margin-bottom:20px;
+}
+
+.tab{
+ flex:1;
+ border:0;
+ background:transparent;
+ padding:10px;
+ border-radius:8px;
+ color:var(--muted);
+ font-size:13px;
+}
+
+.tab.active{
+ background:#fff;
+ color:var(--purple);
+ font-weight:700;
+ box-shadow:0 2px 6px rgba(0,0,0,.06);
+}
+
+.panel{display:none}
+.panel.active{display:block}
+
+label{
+ display:block;
+ font-size:13px;
+ font-weight:600;
+ margin-bottom:7px;
+}
+
+input{
+ width:100%;
+ padding:12px;
+ border:1px solid #dfe1e8;
+ border-radius:9px;
+ outline:none;
+ margin-bottom:15px;
+}
+
+input:focus{border-color:var(--purple)}
+
+.readonly{
+ background:#f5f6f8;
+ color:#777;
+}
+
+.upload{
+ border:2px dashed #dddfea;
+ border-radius:13px;
+ padding:24px;
+ text-align:center;
+ margin-bottom:13px;
+}
+
+.upload p{
+ color:var(--muted);
+ font-size:13px;
+ margin-bottom:12px;
+}
+
+.upload input{
+ border:0;
+ padding:0;
+ margin:0;
+}
+
+.gallery{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+}
+
+.photo{
+ position:relative;
+ border-radius:12px;
+ overflow:hidden;
+ background:#f4f4f6;
+ aspect-ratio:1;
+}
+
+.photo img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ display:block;
+}
+
+.delete{
+ position:absolute;
+ right:7px;
+ top:7px;
+ width:32px;
+ height:32px;
+ border:0;
+ border-radius:9px;
+ background:rgba(255,255,255,.92);
+ color:var(--danger);
+ font-size:15px;
+}
+
+.message{
+ display:none;
+ padding:11px;
+ border-radius:9px;
+ margin-top:12px;
+ font-size:13px;
+}
+
+.message.success{
+ display:block;
+ background:#dcfce7;
+ color:#166534;
+}
+
+.message.error{
+ display:block;
+ background:#fee2e2;
+ color:#991b1b;
+}
 
 @media(max-width:850px){
-
-  .profile-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
+ .profile-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:600px){
+ .header-inner{
+  height:65px;
+  padding:0 15px;
+ }
 
-  .header-inner{
-    height:65px;
-    padding:0 15px;
-  }
+ .layout{padding:20px 14px 40px}
 
-  .layout{
-    padding:20px 14px 40px;
-  }
+ .welcome h2{font-size:23px}
 
-  .welcome h2{
-    font-size:23px;
-  }
+ .stats{
+  grid-template-columns:1fr;
+  gap:10px;
+ }
 
-  .stats{
-    grid-template-columns:1fr;
-    gap:10px;
-  }
+ .profile-grid{grid-template-columns:1fr}
 
-  .profile-grid{
-    grid-template-columns:1fr;
-  }
+ .gallery{grid-template-columns:repeat(2,1fr)}
 
-  .gallery{
-    grid-template-columns:repeat(2,1fr);
-  }
+ .brand p{display:none}
 
-  .brand p{
-    display:none;
-  }
-
-  .logout{
-    padding:8px 10px;
-  }
-
+ .logout{padding:8px 10px}
 }
 </style>
 </head>
@@ -510,301 +442,214 @@ input:focus{
 <body>
 
 <header class="header">
-  <div class="header-inner">
+ <div class="header-inner">
 
-    <div class="brand">
-      <div class="brand-icon">🔐</div>
+  <div class="brand">
+   <div class="brand-icon">🔐</div>
 
-      <div>
-        <h1>Owner Dashboard</h1>
-        <p id="ownerEmail">Checking login...</p>
-      </div>
-    </div>
-
-    <button class="logout" id="logoutBtn">
-      Logout
-    </button>
-
+   <div>
+    <h1>Owner Dashboard</h1>
+    <p id="ownerEmail">Checking login...</p>
+   </div>
   </div>
+
+  <button class="logout" id="logoutBtn">
+   Logout
+  </button>
+
+ </div>
 </header>
 
 
 <main class="layout">
 
-  <div class="welcome">
-    <h2>Welcome back 👋</h2>
-    <p>Manage your couple profiles, photos and profile settings.</p>
+ <div class="welcome">
+  <h2>Welcome back 👋</h2>
+  <p>Manage your couple profiles, photos and profile settings.</p>
+ </div>
+
+
+ <div class="stats">
+
+  <div class="stat">
+   <div class="stat-icon">❤️</div>
+   <div>
+    <div class="stat-number" id="profileCount">0</div>
+    <div class="stat-label">Total Profiles</div>
+   </div>
   </div>
 
-
-  <!-- STATS -->
-
-  <div class="stats">
-
-    <div class="stat">
-      <div class="stat-icon">❤️</div>
-
-      <div>
-        <div class="stat-number" id="profileCount">0</div>
-        <div class="stat-label">Total Profiles</div>
-      </div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-icon">📸</div>
-
-      <div>
-        <div class="stat-number" id="photoCount">0</div>
-        <div class="stat-label">Total Photos</div>
-      </div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-icon">🟢</div>
-
-      <div>
-        <div class="stat-number">Active</div>
-        <div class="stat-label">System Status</div>
-      </div>
-    </div>
-
+  <div class="stat">
+   <div class="stat-icon">📸</div>
+   <div>
+    <div class="stat-number" id="photoCount">0</div>
+    <div class="stat-label">Total Photos</div>
+   </div>
   </div>
 
-
-  <!-- PROFILES -->
-
-  <div class="section-head">
-
-    <h2>Your Profiles</h2>
-
-    <button
-      class="primary"
-      id="createBtn"
-    >
-      ＋ Create Profile
-    </button>
-
+  <div class="stat">
+   <div class="stat-icon">🟢</div>
+   <div>
+    <div class="stat-number">Active</div>
+    <div class="stat-label">System Status</div>
+   </div>
   </div>
 
+ </div>
 
-  <div
-    id="profileGrid"
-    class="profile-grid"
-  >
 
-    <div class="loading">
-      Loading profiles...
-    </div>
+ <div class="section-head">
+  <h2>Your Profiles</h2>
 
+  <button class="primary" id="createBtn">
+   ＋ Create Profile
+  </button>
+ </div>
+
+
+ <div id="profileGrid" class="profile-grid">
+  <div class="loading">
+   Loading profiles...
   </div>
+ </div>
 
 </main>
 
 
-<!-- CREATE PROFILE MODAL -->
+<!-- CREATE PROFILE -->
 
-<div
-  class="modal-overlay"
-  id="createModal"
->
+<div class="modal-overlay" id="createModal">
 
-  <div class="modal">
+ <div class="modal">
 
-    <div class="modal-head">
+  <div class="modal-head">
+   <h2>Create New Profile</h2>
 
-      <h2>Create New Profile</h2>
+   <button class="close" id="closeCreate">
+    ×
+   </button>
+  </div>
 
-      <button
-        class="close"
-        id="closeCreate"
-      >
-        ×
-      </button>
+  <div class="modal-body">
 
-    </div>
+   <label>QR Code</label>
+   <input id="newQr" placeholder="Example: TEST-003">
 
-    <div class="modal-body">
+   <label>Name 1</label>
+   <input id="newName1" placeholder="First person">
 
-      <label>QR Code</label>
+   <label>Name 2</label>
+   <input id="newName2" placeholder="Second person">
 
-      <input
-        id="newQr"
-        placeholder="Example: TEST-003"
-      >
+   <label>Profile Password</label>
+   <input
+    id="newPassword"
+    type="password"
+    placeholder="Password for this profile"
+   >
 
-      <label>Name 1</label>
+   <button class="primary" id="createProfileBtn">
+    Create Profile
+   </button>
 
-      <input
-        id="newName1"
-        placeholder="First person"
-      >
-
-      <label>Name 2</label>
-
-      <input
-        id="newName2"
-        placeholder="Second person"
-      >
-
-      <label>Profile Password</label>
-
-      <input
-        id="newPassword"
-        type="password"
-        placeholder="Password for this profile"
-      >
-
-      <button
-        class="primary"
-        id="createProfileBtn"
-      >
-        Create Profile
-      </button>
-
-      <div
-        id="createMessage"
-        class="message"
-      ></div>
-
-    </div>
+   <div id="createMessage" class="message"></div>
 
   </div>
+
+ </div>
 
 </div>
 
 
-<!-- MANAGE PROFILE MODAL -->
+<!-- MANAGE PROFILE -->
 
-<div
-  class="modal-overlay"
-  id="manageModal"
->
+<div class="modal-overlay" id="manageModal">
 
-  <div class="modal">
+ <div class="modal">
 
-    <div class="modal-head">
+  <div class="modal-head">
 
-      <h2 id="manageTitle">
-        Manage Profile
-      </h2>
+   <h2 id="manageTitle">
+    Manage Profile
+   </h2>
 
-      <button
-        class="close"
-        id="closeManage"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <div class="modal-body">
-
-      <div class="tabs">
-
-        <button
-          class="tab active"
-          data-tab="details"
-        >
-          Details
-        </button>
-
-        <button
-          class="tab"
-          data-tab="photos"
-        >
-          Photos
-        </button>
-
-      </div>
-
-
-      <!-- DETAILS -->
-
-      <div
-        class="panel active"
-        id="detailsPanel"
-      >
-
-        <label>QR Code</label>
-
-        <input
-          id="profileCode"
-          class="readonly"
-          readonly
-        >
-
-        <label>Name 1</label>
-
-        <input
-          id="name1"
-        >
-
-        <label>Name 2</label>
-
-        <input
-          id="name2"
-        >
-
-        <button
-          class="primary"
-          id="saveProfile"
-        >
-          Save Changes
-        </button>
-
-        <div
-          id="profileMessage"
-          class="message"
-        ></div>
-
-      </div>
-
-
-      <!-- PHOTOS -->
-
-      <div
-        class="panel"
-        id="photosPanel"
-      >
-
-        <div class="upload">
-
-          <p>
-            Upload a new photo to this profile
-          </p>
-
-          <input
-            type="file"
-            id="photoInput"
-            accept="image/*"
-          >
-
-        </div>
-
-        <button
-          class="primary"
-          id="uploadBtn"
-        >
-          Upload Photo
-        </button>
-
-        <div
-          id="uploadMessage"
-          class="message"
-        ></div>
-
-        <br>
-
-        <div
-          id="gallery"
-          class="gallery"
-        ></div>
-
-      </div>
-
-    </div>
+   <button class="close" id="closeManage">
+    ×
+   </button>
 
   </div>
+
+  <div class="modal-body">
+
+   <div class="tabs">
+
+    <button class="tab active" data-tab="details">
+     Details
+    </button>
+
+    <button class="tab" data-tab="photos">
+     Photos
+    </button>
+
+   </div>
+
+
+   <div class="panel active" id="detailsPanel">
+
+    <label>QR Code</label>
+
+    <input
+     id="profileCode"
+     class="readonly"
+     readonly
+    >
+
+    <label>Name 1</label>
+
+    <input id="name1">
+
+    <label>Name 2</label>
+
+    <input id="name2">
+
+    <button class="primary" id="saveProfile">
+     Save Changes
+    </button>
+
+    <div id="profileMessage" class="message"></div>
+
+   </div>
+
+
+   <div class="panel" id="photosPanel">
+
+    <div class="upload">
+
+     <p>Upload a new photo to this profile</p>
+
+     <input
+      type="file"
+      id="photoInput"
+      accept="image/*"
+     >
+
+    </div>
+
+    <button class="primary" id="uploadBtn">
+     Upload Photo
+    </button>
+
+    <div id="uploadMessage" class="message"></div>
+
+    <br>
+
+    <div id="gallery" class="gallery"></div>
+
+   </div>
+
+  </div>
+
+ </div>
 
 </div>
 
@@ -812,22 +657,22 @@ input:focus{
 <script type="module">
 
 import {
-  createClient
+ createClient
 } from "https://esm.sh/@supabase/supabase-js@2";
 
 
 const SUPABASE_URL =
-  "https://auoizmzyojlprmgfhuhf.supabase.co";
+ "https://auoizmzyojlprmgfhuhf.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_86ZOljALd-9xCiCTOgvpkA_HGTxCGgi";
+ "sb_publishable_86ZOljALd-9xCiCTOgvpkA_HGTxCGgi";
 
 
 const supabase =
-  createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+ createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+ );
 
 
 let currentUser = null;
@@ -835,594 +680,775 @@ let currentProfile = null;
 let allProfiles = [];
 
 
-/* =========================
-   ELEMENTS
-========================= */
-
 const ownerEmail =
-  document.getElementById("ownerEmail");
+ document.getElementById("ownerEmail");
 
 const profileGrid =
-  document.getElementById("profileGrid");
+ document.getElementById("profileGrid");
 
 const manageModal =
-  document.getElementById("manageModal");
+ document.getElementById("manageModal");
 
 const createModal =
-  document.getElementById("createModal");
+ document.getElementById("createModal");
 
 const gallery =
-  document.getElementById("gallery");
+ document.getElementById("gallery");
 
 
-/* =========================
-   MESSAGE
-========================= */
+function message(element,text,success){
 
-function message(
-  element,
-  text,
-  success
-){
+ element.textContent = text;
 
-  element.textContent = text;
-
-  element.className =
-    "message " +
-    (success ? "success" : "error");
+ element.className =
+  "message " +
+  (success ? "success" : "error");
 
 }
 
 
-/* =========================
-   LOGIN
-========================= */
+function escapeHtml(value){
+
+ return String(value ?? "")
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+
+/* LOGIN */
 
 async function checkLogin(){
 
-  const {
-    data,
-    error
-  } =
-  await supabase.auth.getUser();
+ const {
+  data,
+  error
+ } = await supabase.auth.getUser();
 
 
-  if(error || !data.user){
+ if(error || !data.user){
 
-    window.location.href =
-      "owner.html";
+  window.location.href = "index.html";
 
-    return false;
-  }
+  return false;
+ }
 
 
-  currentUser =
-    data.user;
+ currentUser = data.user;
 
-  ownerEmail.textContent =
-    currentUser.email;
+ ownerEmail.textContent =
+  currentUser.email || "Owner";
 
-  return true;
+ return true;
 }
 
 
-/* =========================
-   LOAD PROFILES
-========================= */
+/* LOAD PROFILES */
 
 async function loadProfiles(){
 
+ profileGrid.innerHTML =
+  `<div class="loading">Loading profiles...</div>`;
+
+
+ const {
+  data,
+  error
+ } = await supabase
+  .from("profiles")
+  .select(
+   "id,qr_code,name_1,name_2,created_at"
+  )
+  .eq(
+   "owner_user_id",
+   currentUser.id
+  )
+  .order(
+   "created_at",
+   {ascending:true}
+  );
+
+
+ if(error){
+
+  console.error(error);
+
   profileGrid.innerHTML =
-    `<div class="loading">
-      Loading profiles...
+   `<div class="empty">
+      Could not load profiles.<br><br>
+      ${escapeHtml(error.message)}
     </div>`;
 
+  return;
+ }
+
+
+ allProfiles = data || [];
+
+
+ document.getElementById("profileCount")
+  .textContent =
+  allProfiles.length;
+
+
+ if(!allProfiles.length){
+
+  document.getElementById("photoCount")
+   .textContent = "0";
+
+  profileGrid.innerHTML =
+   `<div class="empty">
+      No profiles yet.<br><br>
+      Create your first profile.
+    </div>`;
+
+  return;
+ }
+
+
+ profileGrid.innerHTML = "";
+
+ let totalPhotos = 0;
+
+
+ for(const profile of allProfiles){
 
   const {
-    data,
-    error
-  } =
-  await supabase
-    .from("profiles")
-    .select(
-      "id,qr_code,name_1,name_2"
-    )
-    .eq(
-      "owner_user_id",
-      currentUser.id
-    )
-    .order(
-      "created_at",
-      {ascending:true}
-    );
+   count,
+   error:photoError
+  } = await supabase
+   .from("photos")
+   .select(
+    "*",
+    {
+     count:"exact",
+     head:true
+    }
+   )
+   .eq(
+    "profile_id",
+    profile.id
+   );
 
 
-  if(error){
-
-    console.error(error);
-
-    profileGrid.innerHTML =
-      `<div class="empty">
-        Could not load profiles.
-      </div>`;
-
-    return;
+  if(photoError){
+   console.error(photoError);
   }
 
 
-  allProfiles =
-    data || [];
+  totalPhotos += count || 0;
 
 
-  document.getElementById(
-    "profileCount"
-  ).textContent =
-    allProfiles.length;
+  const card =
+   document.createElement("div");
+
+  card.className = "profile-card";
 
 
-  if(!allProfiles.length){
+  card.innerHTML = `
 
-    profileGrid.innerHTML =
-      `<div class="empty">
-        No profiles yet.<br><br>
-        Create your first profile.
-      </div>`;
+   <div class="couple-avatar">
+    ❤️
+   </div>
 
-    return;
-  }
+   <h3>
+    ${escapeHtml(profile.name_1)}
+    ❤️
+    ${escapeHtml(profile.name_2)}
+   </h3>
 
+   <div class="qr-code">
+    QR: ${escapeHtml(profile.qr_code)}
+   </div>
 
-  profileGrid.innerHTML = "";
+   <div class="profile-meta">
 
+    <span class="photo-count">
+     📸 ${count || 0} photos
+    </span>
 
-  let totalPhotos = 0;
+    <button class="manage">
+     Manage →
+    </button>
 
+   </div>
 
-  for(
-    const profile of allProfiles
-  ){
-
-    const {
-      count
-    } =
-    await supabase
-      .from("photos")
-      .select(
-        "*",
-        {
-          count:"exact",
-          head:true
-        }
-      )
-      .eq(
-        "profile_id",
-        profile.id
-      );
+  `;
 
 
-    totalPhotos +=
-      count || 0;
+  card
+   .querySelector(".manage")
+   .onclick =
+   () => openManage(profile);
 
 
-    const card =
-      document.createElement("div");
+  profileGrid.appendChild(card);
 
-    card.className =
-      "profile-card";
+ }
 
 
-    card.innerHTML = `
-
-      <div class="couple-avatar">
-        ❤️
-      </div>
-
-      <h3>
-        ${escapeHtml(profile.name_1)}
-        ❤️
-        ${escapeHtml(profile.name_2)}
-      </h3>
-
-      <div class="qr-code">
-        QR: ${escapeHtml(profile.qr_code)}
-      </div>
-
-      <div class="profile-meta">
-
-        <span class="photo-count">
-          📸 ${count || 0} photos
-        </span>
-
-        <button class="manage">
-          Manage →
-        </button>
-
-      </div>
-
-    `;
-
-
-    card
-      .querySelector(".manage")
-      .onclick =
-      () => openManage(profile);
-
-
-    profileGrid.appendChild(card);
-
-  }
-
-
-  document.getElementById(
-    "photoCount"
-  ).textContent =
-    totalPhotos;
+ document.getElementById("photoCount")
+  .textContent =
+  totalPhotos;
 
 }
 
 
-/* =========================
-   CREATE MODAL
-========================= */
+/* CREATE MODAL */
 
 document
-.getElementById("createBtn")
-.addEventListener(
+ .getElementById("createBtn")
+ .addEventListener(
   "click",
   () => {
 
-    createModal.style.display =
-      "flex";
+   document
+    .getElementById("createMessage")
+    .className = "message";
+
+   createModal.style.display = "flex";
 
   }
-);
+ );
 
 
 document
-.getElementById("closeCreate")
-.addEventListener(
+ .getElementById("closeCreate")
+ .addEventListener(
   "click",
   () => {
 
-    createModal.style.display =
-      "none";
+   createModal.style.display = "none";
 
   }
-);
+ );
 
 
-/* =========================
-   CREATE PROFILE
-========================= */
+/* CREATE PROFILE */
 
 document
-.getElementById("createProfileBtn")
-.addEventListener(
+ .getElementById("createProfileBtn")
+ .addEventListener(
   "click",
   async () => {
 
-    const qr =
-      document
-        .getElementById("newQr")
-        .value
-        .trim();
+   const qr =
+    document
+     .getElementById("newQr")
+     .value
+     .trim();
 
-    const n1 =
-      document
-        .getElementById("newName1")
-        .value
-        .trim();
+   const n1 =
+    document
+     .getElementById("newName1")
+     .value
+     .trim();
 
-    const n2 =
-      document
-        .getElementById("newName2")
-        .value
-        .trim();
+   const n2 =
+    document
+     .getElementById("newName2")
+     .value
+     .trim();
 
-    const password =
-      document
-        .getElementById("newPassword")
-        .value;
-
-
-    if(!qr || !n1 || !n2 || !password){
-
-      message(
-        document.getElementById(
-          "createMessage"
-        ),
-        "Please fill all fields.",
-        false
-      );
-
-      return;
-    }
+   const password =
+    document
+     .getElementById("newPassword")
+     .value;
 
 
-    const button =
-      document.getElementById(
-        "createProfileBtn"
-      );
-
-
-    button.disabled = true;
-
-    button.textContent =
-      "Creating...";
-
-
-    const {
-      data,
-      error
-    } =
-    await supabase.rpc(
-      "create_profile",
-      {
-        p_qr_code:qr,
-        p_name_1:n1,
-        p_name_2:n2,
-        p_password:password
-      }
-    );
-
-
-    button.disabled = false;
-
-    button.textContent =
-      "Create Profile";
-
-
-    if(error){
-
-      console.error(error);
-
-      message(
-        document.getElementById(
-          "createMessage"
-        ),
-        error.message ||
-        "Could not create profile.",
-        false
-      );
-
-      return;
-    }
-
+   if(!qr || !n1 || !n2 || !password){
 
     message(
-      document.getElementById(
-        "createMessage"
-      ),
-      "Profile created successfully.",
-      true
+     document.getElementById("createMessage"),
+     "Please fill all fields.",
+     false
     );
 
-
-    document.getElementById(
-      "newQr"
-    ).value = "";
-
-    document.getElementById(
-      "newName1"
-    ).value = "";
-
-    document.getElementById(
-      "newName2"
-    ).value = "";
-
-    document.getElementById(
-      "newPassword"
-    ).value = "";
+    return;
+   }
 
 
-    setTimeout(
-      () => {
+   const button =
+    document.getElementById("createProfileBtn");
 
-        createModal.style.display =
-          "none";
+   button.disabled = true;
+   button.textContent = "Creating...";
 
-        loadProfiles();
 
-      },
-      600
+   const {
+    error
+   } =
+   await supabase.rpc(
+    "create_profile",
+    {
+     p_qr_code:qr,
+     p_name_1:n1,
+     p_name_2:n2,
+     p_password:password
+    }
+   );
+
+
+   button.disabled = false;
+   button.textContent = "Create Profile";
+
+
+   if(error){
+
+    console.error(error);
+
+    message(
+     document.getElementById("createMessage"),
+     error.message || "Could not create profile.",
+     false
     );
+
+    return;
+   }
+
+
+   message(
+    document.getElementById("createMessage"),
+    "Profile created successfully.",
+    true
+   );
+
+
+   document.getElementById("newQr").value = "";
+   document.getElementById("newName1").value = "";
+   document.getElementById("newName2").value = "";
+   document.getElementById("newPassword").value = "";
+
+
+   setTimeout(
+    () => {
+
+     createModal.style.display = "none";
+
+     loadProfiles();
+
+    },
+    700
+   );
 
   }
-);
+ );
 
 
-/* =========================
-   MANAGE PROFILE
-========================= */
+/* OPEN MANAGE */
 
 function openManage(profile){
 
-  currentProfile =
-    profile;
+ currentProfile = profile;
 
 
-  document.getElementById(
-    "manageTitle"
-  ).textContent =
-    profile.name_1 +
-    " ❤️ " +
-    profile.name_2;
+ document.getElementById("manageTitle")
+  .textContent =
+  profile.name_1 +
+  " ❤️ " +
+  profile.name_2;
 
 
-  document.getElementById(
-    "profileCode"
-  ).value =
-    profile.qr_code;
+ document.getElementById("profileCode")
+  .value =
+  profile.qr_code;
 
 
-  document.getElementById(
-    "name1"
-  ).value =
-    profile.name_1;
+ document.getElementById("name1")
+  .value =
+  profile.name_1;
 
 
-  document.getElementById(
-    "name2"
-  ).value =
-    profile.name_2;
+ document.getElementById("name2")
+  .value =
+  profile.name_2;
 
 
-  manageModal.style.display =
-    "flex";
+ document.getElementById("profileMessage")
+  .className = "message";
 
 
-  switchTab("details");
+ document.getElementById("uploadMessage")
+  .className = "message";
+
+
+ manageModal.style.display = "flex";
+
+ switchTab("details");
 
 }
 
 
-/* =========================
-   CLOSE MANAGE
-========================= */
+/* CLOSE MANAGE */
 
 document
-.getElementById("closeManage")
-.addEventListener(
+ .getElementById("closeManage")
+ .addEventListener(
   "click",
   () => {
 
-    manageModal.style.display =
-      "none";
+   manageModal.style.display = "none";
+
+   currentProfile = null;
 
   }
-);
+ );
 
 
-/* =========================
-   TABS
-========================= */
+/* TABS */
 
 document
-.querySelectorAll(".tab")
-.forEach(
+ .querySelectorAll(".tab")
+ .forEach(
   tab => {
 
-    tab.addEventListener(
-      "click",
-      () => {
+   tab.addEventListener(
+    "click",
+    () => {
 
-        switchTab(
-          tab.dataset.tab
-        );
+     switchTab(tab.dataset.tab);
 
-      }
-    );
+    }
+   );
 
   }
-);
+ );
 
 
 function switchTab(name){
 
-  document
-    .querySelectorAll(".tab")
-    .forEach(
-      tab => {
+ document
+  .querySelectorAll(".tab")
+  .forEach(
+   tab => {
 
-        tab.classList.toggle(
-          "active",
-          tab.dataset.tab === name
-        );
-
-      }
+    tab.classList.toggle(
+     "active",
+     tab.dataset.tab === name
     );
 
-
-  document
-    .querySelectorAll(".panel")
-    .forEach(
-      panel => {
-
-        panel.classList.remove(
-          "active"
-        );
-
-      }
-    );
-
-
-  document.getElementById(
-    name + "Panel"
-  ).classList.add(
-    "active"
+   }
   );
 
 
-  if(name === "photos"){
+ document
+  .querySelectorAll(".panel")
+  .forEach(
+   panel => {
 
-    loadPhotos();
+    panel.classList.remove("active");
 
-  }
+   }
+  );
+
+
+ document
+  .getElementById(name + "Panel")
+  .classList.add("active");
+
+
+ if(name === "photos"){
+
+  loadPhotos();
+
+ }
 
 }
 
 
-/* =========================
-   SAVE DETAILS
-========================= */
+/* SAVE DETAILS */
 
 document
-.getElementById("saveProfile")
-.addEventListener(
+ .getElementById("saveProfile")
+ .addEventListener(
   "click",
   async () => {
 
-    if(!currentProfile){
-      return;
-    }
+   if(!currentProfile) return;
 
 
-    const n1 =
-      document
-        .getElementById("name1")
-        .value
-        .trim();
+   const n1 =
+    document
+     .getElementById("name1")
+     .value
+     .trim();
 
-    const n2 =
-      document
-        .getElementById("name2")
-        .value
-        .trim();
-
-
-    if(!n1 || !n2){
-
-      message(
-        document.getElementById(
-          "profileMessage"
-        ),
-        "Both names are required.",
-        false
-      );
-
-      return;
-    }
+   const n2 =
+    document
+     .getElementById("name2")
+     .value
+     .trim();
 
 
-    const {
-      error
-    } =
-    await supabase
-      .from("profiles")
-      .update({
-        name_1:n1,
-        name_2:n2
-      })
-      .eq(
-        "id",
-        currentProfile.id
-      );
+   if(!n1 || !n2){
+
+    message(
+     document.getElementById("profileMessage"),
+     "Both names are required.",
+     false
+    );
+
+    return;
+   }
 
 
-    if(error){
+   const button =
+    document.getElementById("saveProfile");
 
-      console.error(error);
+   button.disabled = true;
+   button.textContent = "Saving...";
 
-      message(
-        document.getElementById(
-       
+
+   const {
+    error
+   } =
+   await supabase
+    .from("profiles")
+    .update({
+     name_1:n1,
+     name_2:n2
+    })
+    .eq(
+     "id",
+     currentProfile.id
+    )
+    .eq(
+     "owner_user_id",
+     currentUser.id
+    );
+
+
+   button.disabled = false;
+   button.textContent = "Save Changes";
+
+
+   if(error){
+
+    console.error(error);
+
+    message(
+     document.getElementById("profileMessage"),
+     error.message || "Could not save changes.",
+     false
+    );
+
+    return;
+   }
+
+
+   currentProfile.name_1 = n1;
+   currentProfile.name_2 = n2;
+
+
+   message(
+    document.getElementById("profileMessage"),
+    "Profile updated successfully.",
+    true
+   );
+
+
+   document.getElementById("manageTitle")
+    .textContent =
+    n1 + " ❤️ " + n2;
+
+
+   await loadProfiles();
+
+  }
+ );
+
+
+/* LOAD PHOTOS */
+
+async function loadPhotos(){
+
+ if(!currentProfile){
+
+  gallery.innerHTML = "";
+
+  return;
+ }
+
+
+ gallery.innerHTML =
+  `<div class="loading">Loading photos...</div>`;
+
+
+ const {
+  data,
+  error
+ } =
+ await supabase
+  .from("photos")
+  .select(
+   "id,file_path,uploaded_at"
+  )
+  .eq(
+   "profile_id",
+   currentProfile.id
+  )
+  .order(
+   "uploaded_at",
+   {ascending:false}
+  );
+
+
+ if(error){
+
+  console.error(error);
+
+  gallery.innerHTML =
+   `<div class="empty">
+      Could not load photos.<br><br>
+      ${escapeHtml(error.message)}
+    </div>`;
+
+  return;
+ }
+
+
+ if(!data || !data.length){
+
+  gallery.innerHTML =
+   `<div class="empty">
+      No photos uploaded yet.
+    </div>`;
+
+  return;
+ }
+
+
+ gallery.innerHTML = "";
+
+
+ for(const photo of data){
+
+  const {
+   data:signed,
+   error:signedError
+  } =
+  await supabase
+   .storage
+   .from("Photos")
+   .createSignedUrl(
+    photo.file_path,
+    3600
+   );
+
+
+  if(signedError){
+
+   console.error(signedError);
+
+   continue;
+  }
+
+
+  const item =
+   document.createElement("div");
+
+  item.className = "photo";
+
+
+  item.innerHTML = `
+
+   <img
+    src="${signed.signedUrl}"
+    alt="Profile photo"
+   >
+
+   <button
+    class="delete"
+    title="Delete photo"
+   >
+    🗑
+   </button>
+
+  `;
+
+
+  item
+   .querySelector(".delete")
+   .onclick =
+   () => deletePhoto(photo);
+
+
+  gallery.appendChild(item);
+
+ }
+
+}
+
+
+/* DELETE PHOTO */
+
+async function deletePhoto(photo){
+
+ const yes =
+  confirm(
+   "Are you sure you want to delete this photo?"
+  );
+
+
+ if(!yes) return;
+
+
+ const {
+  error:storageError
+ } =
+ await supabase
+  .storage
+  .from("Photos")
+  .remove([
+   photo.file_path
+  ]);
+
+
+ if(storageError){
+
+  console.error(storageError);
+
+  message(
+   document.getElementById("uploadMessage"),
+   storageError.message || "Could not delete photo.",
+   false
+  );
+
+  return;
+ }
+
+
+ const {
+  error:dbError
+ } =
+ await supabase
+  .from("photos")
+  .delete()
+  .eq(
+   "id",
+   photo.id
+  )
+  .eq(
+   "profile_id",
+   currentProfile.id
+  );
+
+
+ if(dbError){
+
+  console.error(dbError);
+
+  message(
+   document.getElementById("uploadMessage"),
+   dbError.message || "Photo file deleted but database update failed.",
+   false
+  );
+
+  return;
+ }
+
+
+ messag
