@@ -1,94 +1,652 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Profile Test</title>
+
+  <title>Private Profile</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background: #f5f6fa;
+      color: #111827;
+      min-height: 100vh;
+    }
+
+    /* PASSWORD SCREEN */
+
+    #passwordScreen {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 20px;
     }
 
-    .card {
-      max-width: 420px;
-      margin: 50px auto;
+    .password-box {
+      width: 100%;
+      max-width: 380px;
       background: white;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0,0,0,.12);
+      padding: 30px 24px;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
     }
 
-    h2 {
+    .lock-icon {
+      font-size: 42px;
       margin-bottom: 15px;
     }
 
-    pre {
-      white-space: pre-wrap;
-      word-break: break-word;
-      background: #f1f1f1;
-      padding: 15px;
+    .password-box h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .password-box p {
+      color: #6b7280;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    #passwordInput {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d1d5db;
       border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 12px;
+    }
+
+    #passwordInput:focus {
+      border-color: #6366f1;
+    }
+
+    #unlockButton {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6366f1, #7c3aed);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #unlockButton:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #errorMessage {
+      color: #dc2626;
+      font-size: 14px;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* PROFILE */
+
+    #profileScreen {
+      display: none;
+      max-width: 900px;
+      margin: auto;
+      padding: 25px 18px 40px;
+    }
+
+    .profile-header {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .profile-header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .profile-header p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .gallery-title {
+      font-size: 22px;
+      margin: 25px 0 15px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .photo-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .no-photos {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      color: #6b7280;
+    }
+
+    .logout-button {
+      margin-top: 25px;
+      padding: 11px 20px;
+      border: 1px solid #d1d5db;
+      background: white;
+      border-radius: 9px;
+      cursor: pointer;
+      color: #374151;
+    }
+
+    /* PHOTO VIEWER */
+
+    #photoViewer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    #photoViewer img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    #closeViewer {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      color: #111;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .photo-card img {
+        height: 170px;
+      }
+
+      .profile-header h1 {
+        font-size: 25px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h2>Profile Test</h2>
-  <pre id="result">Loading...</pre>
-</div>
+  <!-- PASSWORD SCREEN -->
 
-<script>
+  <section id="passwordScreen">
 
-const SUPABASE_URL =
-  "https://auoizmzyojlprmgfhuhf.supabase.co";
+    <div class="password-box">
 
-const SUPABASE_KEY =
-  "sb_publishable_86ZOljALd-9xCiCTOgvpkA_HGTxCGgi";
+      <div class="lock-icon">🔒</div>
 
-const QR_CODE =
-  new URLSearchParams(window.location.search).get("qr") || "TEST-001";
+      <h1>Private Profile</h1>
+
+      <p>Enter the password to view this profile.</p>
+
+      <input
+        type="password"
+        id="passwordInput"
+        placeholder="Enter password"
+        autocomplete="off"
+      >
+
+      <button id="unlockButton">
+        Unlock Profile
+      </button>
+
+      <div id="errorMessage">
+        Incorrect password. Please try again.
+      </div>
+
+    </div>
+
+  </section>
 
 
-async function testProfile() {
+  <!-- PROFILE SCREEN -->
 
-  const result = document.getElementById("result");
+  <section id="profileScreen">
 
-  const url =
-    SUPABASE_URL +
-    "/rest/v1/profiles?select=qr_code,name_1,name_2&qr_code=eq." +
-    encodeURIComponent(QR_CODE);
+    <div class="profile-header">
 
-  try {
+      <h1 id="coupleNames">Loading...</h1>
 
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "apikey": SUPABASE_KEY,
-        "Authorization": "Bearer " + SUPABASE_KEY
+      <p id="profileCode"></p>
+
+    </div>
+
+    <h2 class="gallery-title">Photos</h2>
+
+    <div id="gallery" class="gallery"></div>
+
+    <button class="logout-button" onclick="logout()">
+      🔒 Lock Profile
+    </button>
+
+  </section>
+
+
+  <!-- PHOTO VIEWER -->
+
+  <div id="photoViewer">
+
+    <button id="closeViewer">×</button>
+
+    <img id="viewerImage" src="" alt="Photo">
+
+  </div>
+
+
+  <script>
+
+    /*
+      SUPABASE EDGE FUNCTION
+    */
+
+    const FUNCTION_URL =
+      "https://auoizmzyojlprmgfhuhf.supabase.co/functions/v1/swift-endpoint";
+
+
+    /*
+      QR CODE
+
+      Example:
+
+      https://anihkumar.github.io/Qr---profile/?qr=TEST-001
+
+      If no QR parameter is supplied,
+      TEST-001 will be used for testing.
+    */
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const QR_CODE =
+      urlParams.get("qr") || "TEST-001";
+
+
+    /*
+      ELEMENTS
+    */
+
+    const passwordScreen =
+      document.getElementById("passwordScreen");
+
+    const profileScreen =
+      document.getElementById("profileScreen");
+
+    const passwordInput =
+      document.getElementById("passwordInput");
+
+    const unlockButton =
+      document.getElementById("unlockButton");
+
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+    const coupleNames =
+      document.getElementById("coupleNames");
+
+    const profileCode =
+      document.getElementById("profileCode");
+
+    const gallery =
+      document.getElementById("gallery");
+
+
+    /*
+      UNLOCK PROFILE
+    */
+
+    async function unlockProfile() {
+
+      const password =
+        passwordInput.value.trim();
+
+      if (!password) {
+
+        errorMessage.textContent =
+          "Please enter the password.";
+
+        errorMessage.style.display =
+          "block";
+
+        return;
       }
-    });
 
-    const text = await response.text();
 
-    result.textContent =
-      "STATUS: " + response.status +
-      "\n\nRESPONSE:\n" + text;
+      unlockButton.disabled = true;
 
-  } catch (error) {
+      unlockButton.textContent =
+        "Checking...";
 
-    result.textContent =
-      "FETCH ERROR:\n\n" + error.message;
-  }
-}
+      errorMessage.style.display =
+        "none";
 
-testProfile();
 
-</script>
+      try {
+
+        const response =
+          await fetch(FUNCTION_URL, {
+
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+              qr_code: QR_CODE,
+              password: password
+            })
+
+          });
+
+
+        const result =
+          await response.json();
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            result.error || "Invalid password"
+          );
+
+        }
+
+
+        /*
+          PROFILE DETAILS
+        */
+
+        const profile =
+          result.profile;
+
+        coupleNames.textContent =
+          profile.name_1 + " ❤️ " + profile.name_2;
+
+        profileCode.textContent =
+          "Profile: " + profile.qr_code;
+
+
+        /*
+          PHOTOS
+        */
+
+        gallery.innerHTML = "";
+
+
+        if (
+          !result.photos ||
+          result.photos.length === 0
+        ) {
+
+          gallery.innerHTML = `
+            <div class="no-photos">
+              No photos uploaded yet.
+            </div>
+          `;
+
+        } else {
+
+          result.photos.forEach(photo => {
+
+            if (!photo.url) {
+              return;
+            }
+
+
+            const card =
+              document.createElement("div");
+
+            card.className =
+              "photo-card";
+
+
+            const image =
+              document.createElement("img");
+
+            image.src =
+              photo.url;
+
+            image.alt =
+              "Profile photo";
+
+            image.loading =
+              "lazy";
+
+
+            image.onclick =
+              function() {
+
+                openPhoto(photo.url);
+
+              };
+
+
+            card.appendChild(image);
+
+            gallery.appendChild(card);
+
+          });
+
+        }
+
+
+        /*
+          SHOW PROFILE
+        */
+
+        passwordScreen.style.display =
+          "none";
+
+        profileScreen.style.display =
+          "block";
+
+
+        /*
+          Don't store password.
+        */
+
+        passwordInput.value = "";
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        errorMessage.textContent =
+          "Incorrect password or profile not found.";
+
+        errorMessage.style.display =
+          "block";
+
+      }
+
+
+      unlockButton.disabled = false;
+
+      unlockButton.textContent =
+        "Unlock Profile";
+
+    }
+
+
+    /*
+      ENTER KEY
+    */
+
+    passwordInput.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Enter") {
+
+          unlockProfile();
+
+        }
+
+      }
+    );
+
+
+    /*
+      BUTTON
+    */
+
+    unlockButton.addEventListener(
+      "click",
+      unlockProfile
+    );
+
+
+    /*
+      PHOTO VIEWER
+    */
+
+    function openPhoto(url) {
+
+      document.getElementById(
+        "viewerImage"
+      ).src = url;
+
+      document.getElementById(
+        "photoViewer"
+      ).style.display = "flex";
+
+    }
+
+
+    /*
+      CLOSE PHOTO
+    */
+
+    document.getElementById(
+      "closeViewer"
+    ).addEventListener(
+      "click",
+      function() {
+
+        document.getElementById(
+          "photoViewer"
+        ).style.display = "none";
+
+        document.getElementById(
+          "viewerImage"
+        ).src = "";
+
+      }
+    );
+
+
+    /*
+      CLICK OUTSIDE PHOTO
+    */
+
+    document.getElementById(
+      "photoViewer"
+    ).addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          event.target ===
+          document.getElementById("photoViewer")
+        ) {
+
+          document.getElementById(
+            "photoViewer"
+          ).style.display = "none";
+
+          document.getElementById(
+            "viewerImage"
+          ).src = "";
+
+        }
+
+      }
+    );
+
+
+    /*
+      LOCK AGAIN
+    */
+
+    function logout() {
+
+      profileScreen.style.display =
+        "none";
+
+      passwordScreen.style.display =
+        "flex";
+
+      gallery.innerHTML = "";
+
+      coupleNames.textContent =
+        "Loading...";
+
+      profileCode.textContent =
+        "";
+
+      passwordInput.value =
+        "";
+
+      errorMessage.style.display =
+        "none";
+
+    }
+
+  </script>
 
 </body>
 </html>
