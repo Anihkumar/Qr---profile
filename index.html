@@ -1,100 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Profile</title>
+  <title>QR Profile Test</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
       font-family: Arial, sans-serif;
       background: #f5f6fa;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       padding: 20px;
     }
 
     .card {
-      width: 100%;
       max-width: 420px;
+      margin: 50px auto;
       background: white;
-      border-radius: 20px;
       padding: 25px;
-      text-align: center;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.12);
     }
 
-    .photo {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid #111;
-      margin-bottom: 20px;
+    h2 {
+      margin-bottom: 15px;
     }
 
-    h1 {
-      font-size: 26px;
-      margin-bottom: 8px;
-    }
-
-    .qr {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .names {
-      font-size: 18px;
-      margin-top: 15px;
-    }
-
-    .loading {
-      font-size: 18px;
-      color: #555;
-    }
-
-    .error {
-      color: #d00;
-      font-size: 15px;
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 10px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="card" id="profile">
-    <div class="loading">Loading profile...</div>
-  </div>
+<div class="card">
+  <h2>Profile Test</h2>
+  <pre id="result">Loading...</pre>
+</div>
 
 <script>
 
-const SUPABASE_URL = "https://auoizmzyojlprmgfhuhf.supabase.co";
+const SUPABASE_URL =
+  "https://auoizmzyojlprmgfhuhf.supabase.co";
 
-const SUPABASE_KEY = "sb_publishable_86ZOljALd-9xCiCTOgvpkA_HGTxCGgi";
+const SUPABASE_KEY =
+  "sb_publishable_86ZOljALd-9xCiCTOgvpkA_HGTxCGgi";
 
-const QR_CODE = new URLSearchParams(window.location.search)
-  .get("qr") || "TEST-001";
+const QR_CODE =
+  new URLSearchParams(window.location.search).get("qr") || "TEST-001";
 
 
-async function loadProfile() {
+async function testProfile() {
 
-  const box = document.getElementById("profile");
+  const result = document.getElementById("result");
+
+  const url =
+    SUPABASE_URL +
+    "/rest/v1/profiles?select=qr_code,name_1,name_2&qr_code=eq." +
+    encodeURIComponent(QR_CODE);
 
   try {
-
-    const url =
-      SUPABASE_URL +
-      "/rest/v1/profiles?select=qr_code,name_1,name_2,photos(file_path)&qr_code=eq." +
-      encodeURIComponent(QR_CODE);
 
     const response = await fetch(url, {
       method: "GET",
@@ -104,78 +73,20 @@ async function loadProfile() {
       }
     });
 
-    if (!response.ok) {
+    const text = await response.text();
 
-      const errorText = await response.text();
-
-      console.error("Supabase error:", response.status, errorText);
-
-      throw new Error(
-        "Supabase error " + response.status
-      );
-    }
-
-    const data = await response.json();
-
-    console.log("Profile data:", data);
-
-    if (!data.length) {
-
-      box.innerHTML = `
-        <div class="error">
-          Profile not found
-        </div>
-      `;
-
-      return;
-    }
-
-    const profile = data[0];
-
-    let photoUrl = "";
-
-    if (profile.photos && profile.photos.file_path) {
-
-      photoUrl =
-        SUPABASE_URL +
-        "/storage/v1/object/public/Photos/" +
-        profile.photos.file_path;
-    }
-
-    box.innerHTML = `
-      ${
-        photoUrl
-        ? `<img class="photo" src="${photoUrl}" alt="Profile Photo">`
-        : ""
-      }
-
-      <h1>
-        ${profile.name_1 || ""}
-        ${profile.name_2 || ""}
-      </h1>
-
-      <div class="qr">
-        QR Code: ${profile.qr_code}
-      </div>
-
-      <div class="names">
-        Welcome to your profile
-      </div>
-    `;
+    result.textContent =
+      "STATUS: " + response.status +
+      "\n\nRESPONSE:\n" + text;
 
   } catch (error) {
 
-    console.error("Profile loading error:", error);
-
-    box.innerHTML = `
-      <div class="error">
-        Something went wrong while loading the profile.
-      </div>
-    `;
+    result.textContent =
+      "FETCH ERROR:\n\n" + error.message;
   }
 }
 
-loadProfile();
+testProfile();
 
 </script>
 
