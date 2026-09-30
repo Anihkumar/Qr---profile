@@ -1,1 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Owner Login</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      color: #111827;
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+
+      background: #ffffff;
+
+      padding: 32px 25px;
+
+      border-radius: 18px;
+
+      border: 1px solid #e5e7eb;
+
+      box-shadow:
+        0 15px 40px rgba(0,0,0,0.08);
+
+      text-align: center;
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+
+      margin: 0 auto 18px;
+
+      border-radius: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 28px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6366f1,
+          #7c3aed
+        );
+    }
+
+    h1 {
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+
+      text-align: left;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+
+      padding: 13px;
+
+      border: 1px solid #d1d5db;
+
+      border-radius: 10px;
+
+      font-size: 15px;
+
+      outline: none;
+
+      margin-bottom: 16px;
+    }
+
+    input:focus {
+      border-color: #6366f1;
+    }
+
+    button {
+      width: 100%;
+
+      padding: 14px;
+
+      border: none;
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6366f1,
+          #7c3aed
+        );
+
+      color: white;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #message {
+      display: none;
+
+      margin-top: 14px;
+
+      padding: 11px;
+
+      border-radius: 9px;
+
+      font-size: 13px;
+    }
+
+    #message.error {
+      display: block;
+
+      background: #fee2e2;
+
+      color: #991b1b;
+    }
+
+    #message.success {
+      display: block;
+
+      background: #dcfce7;
+
+      color: #166534;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-box">
+
+    <div class="icon">
+      🔐
+    </div>
+
+    <h1>Owner Login</h1>
+
+    <p class="subtitle">
+      Login to access the Owner Dashboard
+    </p>
+
+    <form id="loginForm">
+
+      <label for="email">
+        Email Address
+      </label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter owner email"
+        autocomplete="email"
+        required
+      >
+
+      <label for="password">
+        Password
+      </label>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter password"
+        autocomplete="current-password"
+        required
+      >
+
+      <button
+        type="submit"
+        id="loginButton"
+      >
+        Login
+      </button>
+
+    </form>
+
+    <div id="message"></div>
+
+  </div>
+
+
+  <script type="module">
+
+    import {
+      createClient
+    } from "https://esm.sh/@supabase/supabase-js@2";
+
+
+    const SUPABASE_URL =
+      "https://auoizmzyojlprmgfhuhf.supabase.co";
+
+
+    const SUPABASE_KEY =
+      "sb_publishable_86ZOljALd-9xCiCTOgvpkA_HGTxCGgi";
+
+
+    const supabase =
+      createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    const form =
+      document.getElementById("loginForm");
+
+
+    const emailInput =
+      document.getElementById("email");
+
+
+    const passwordInput =
+      document.getElementById("password");
+
+
+    const loginButton =
+      document.getElementById("loginButton");
+
+
+    const message =
+      document.getElementById("message");
+
+
+    function showMessage(text, type) {
+
+      message.textContent = text;
+
+      message.className = type;
+
+    }
+
+
+    form.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+          emailInput.value.trim();
+
+
+        const password =
+          passwordInput.value;
+
+
+        if (!email || !password) {
+
+          showMessage(
+            "Please enter email and password.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+          "Logging in...";
+
+
+        message.className = "";
+
+
+        try {
+
+          const {
+            data,
+            error
+          } =
+          await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+          });
+
+
+          if (error) {
+
+            throw error;
+
+          }
+
+
+          if (!data.user) {
+
+            throw new Error(
+              "Login failed."
+            );
+
+          }
+
+
+          showMessage(
+            "Login successful. Opening dashboard...",
+            "success"
+          );
+
+
+          setTimeout(
+            function() {
+
+              window.location.href =
+                "owner.html";
+
+            },
+            500
+          );
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showMessage(
+            error.message ||
+            "Invalid email or password.",
+            "error"
+          );
+
+
+          loginButton.disabled = false;
+
+          loginButton.textContent =
+            "Login";
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
