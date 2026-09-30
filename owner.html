@@ -9,450 +9,455 @@
 *{box-sizing:border-box;margin:0;padding:0}
 
 :root{
- --purple:#6d5dfc;
- --purple2:#8b5cf6;
- --bg:#f7f8fc;
- --card:#fff;
- --text:#171923;
- --muted:#737784;
- --border:#e8e9ef;
- --danger:#ef4444;
+--purple:#6d5dfc;
+--purple2:#8b5cf6;
+--bg:#f7f8fc;
+--text:#171923;
+--muted:#737784;
+--border:#e8e9ef;
+--danger:#ef4444;
 }
 
 body{
- font-family:Inter,Arial,sans-serif;
- background:var(--bg);
- color:var(--text);
+font-family:Inter,Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
 }
 
 button,input{font:inherit}
 button{cursor:pointer}
 
 .header{
- background:#fff;
- border-bottom:1px solid var(--border);
- position:sticky;
- top:0;
- z-index:100;
+background:#fff;
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .header-inner{
- max-width:1180px;
- margin:auto;
- height:72px;
- padding:0 22px;
- display:flex;
- align-items:center;
- justify-content:space-between;
+max-width:1180px;
+margin:auto;
+height:72px;
+padding:0 22px;
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
 
 .brand{
- display:flex;
- align-items:center;
- gap:12px;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
 .brand-icon{
- width:42px;
- height:42px;
- border-radius:13px;
- display:flex;
- align-items:center;
- justify-content:center;
- color:#fff;
- font-size:20px;
- background:linear-gradient(135deg,var(--purple),var(--purple2));
- box-shadow:0 7px 18px rgba(109,93,252,.25);
+width:42px;
+height:42px;
+border-radius:13px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+font-size:20px;
+background:linear-gradient(135deg,var(--purple),var(--purple2));
 }
 
 .brand h1{font-size:18px}
 
 .brand p{
- font-size:12px;
- color:var(--muted);
- margin-top:2px;
+font-size:12px;
+color:var(--muted);
+margin-top:2px;
 }
 
 .logout{
- border:1px solid var(--border);
- background:#fff;
- color:#444;
- padding:9px 14px;
- border-radius:10px;
- font-size:13px;
+border:1px solid var(--border);
+background:#fff;
+color:#444;
+padding:9px 14px;
+border-radius:10px;
 }
 
 .layout{
- max-width:1180px;
- margin:auto;
- padding:26px 22px 50px;
+max-width:1180px;
+margin:auto;
+padding:26px 22px 50px;
 }
 
-.welcome{margin-bottom:25px}
+.welcome{
+margin-bottom:25px;
+}
 
 .welcome h2{
- font-size:27px;
- margin-bottom:6px;
+font-size:27px;
+margin-bottom:6px;
 }
 
 .welcome p{
- color:var(--muted);
- font-size:14px;
+color:var(--muted);
+font-size:14px;
 }
 
 .stats{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:15px;
- margin-bottom:25px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-bottom:25px;
 }
 
 .stat{
- background:#fff;
- border:1px solid var(--border);
- border-radius:16px;
- padding:20px;
- display:flex;
- align-items:center;
- gap:14px;
+background:#fff;
+border:1px solid var(--border);
+border-radius:16px;
+padding:20px;
+display:flex;
+align-items:center;
+gap:14px;
 }
 
 .stat-icon{
- width:46px;
- height:46px;
- border-radius:13px;
- display:flex;
- align-items:center;
- justify-content:center;
- background:#f1efff;
- font-size:21px;
+width:46px;
+height:46px;
+border-radius:13px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#f1efff;
+font-size:21px;
 }
 
 .stat-number{
- font-size:24px;
- font-weight:700;
+font-size:24px;
+font-weight:700;
 }
 
 .stat-label{
- color:var(--muted);
- font-size:12px;
- margin-top:3px;
+color:var(--muted);
+font-size:12px;
+margin-top:3px;
 }
 
 .section-head{
- display:flex;
- align-items:center;
- justify-content:space-between;
- margin-bottom:15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:15px;
 }
 
-.section-head h2{font-size:20px}
+.section-head h2{
+font-size:20px;
+}
 
 .primary{
- border:0;
- color:#fff;
- background:linear-gradient(135deg,var(--purple),var(--purple2));
- padding:11px 16px;
- border-radius:10px;
- font-weight:600;
- box-shadow:0 7px 18px rgba(109,93,252,.18);
+border:0;
+color:#fff;
+background:linear-gradient(135deg,var(--purple),var(--purple2));
+padding:11px 16px;
+border-radius:10px;
+font-weight:600;
 }
 
 .primary:disabled{
- opacity:.6;
- cursor:not-allowed;
+opacity:.6;
+cursor:not-allowed;
 }
 
 .profile-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:16px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
 }
 
 .profile-card{
- background:#fff;
- border:1px solid var(--border);
- border-radius:17px;
- padding:18px;
- transition:.2s;
+background:#fff;
+border:1px solid var(--border);
+border-radius:17px;
+padding:18px;
+transition:.2s;
 }
 
 .profile-card:hover{
- transform:translateY(-2px);
- box-shadow:0 12px 30px rgba(20,20,40,.07);
+transform:translateY(-2px);
+box-shadow:0 12px 30px rgba(20,20,40,.07);
 }
 
 .couple-avatar{
- width:54px;
- height:54px;
- border-radius:16px;
- display:flex;
- align-items:center;
- justify-content:center;
- background:linear-gradient(135deg,#eeeaff,#f5efff);
- font-size:25px;
- margin-bottom:14px;
+width:54px;
+height:54px;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#eeeaff,#f5efff);
+font-size:25px;
+margin-bottom:14px;
 }
 
 .profile-card h3{
- font-size:17px;
- margin-bottom:6px;
+font-size:17px;
+margin-bottom:6px;
 }
 
 .qr-code{
- color:var(--muted);
- font-size:12px;
- margin-bottom:16px;
+color:var(--muted);
+font-size:12px;
+margin-bottom:16px;
 }
 
 .profile-meta{
- border-top:1px solid var(--border);
- padding-top:13px;
- display:flex;
- justify-content:space-between;
- align-items:center;
+border-top:1px solid var(--border);
+padding-top:13px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .photo-count{
- font-size:12px;
- color:var(--muted);
+font-size:12px;
+color:var(--muted);
 }
 
 .manage{
- border:0;
- background:#f1efff;
- color:#5b4de7;
- padding:8px 11px;
- border-radius:8px;
- font-size:12px;
- font-weight:600;
+border:0;
+background:#f1efff;
+color:#5b4de7;
+padding:8px 11px;
+border-radius:8px;
+font-size:12px;
+font-weight:600;
 }
 
 .empty{
- background:#fff;
- border:1px dashed #d9dbe5;
- border-radius:16px;
- padding:40px 20px;
- text-align:center;
- color:var(--muted);
+background:#fff;
+border:1px dashed #d9dbe5;
+border-radius:16px;
+padding:40px 20px;
+text-align:center;
+color:var(--muted);
 }
 
 .loading{
- text-align:center;
- color:var(--muted);
- padding:30px;
+text-align:center;
+color:var(--muted);
+padding:30px;
 }
 
 .modal-overlay{
- position:fixed;
- inset:0;
- background:rgba(15,17,25,.55);
- display:none;
- align-items:center;
- justify-content:center;
- padding:15px;
- z-index:500;
+position:fixed;
+inset:0;
+background:rgba(15,17,25,.55);
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px;
+z-index:500;
 }
 
 .modal{
- width:100%;
- max-width:720px;
- max-height:90vh;
- overflow:auto;
- background:#fff;
- border-radius:20px;
- box-shadow:0 25px 70px rgba(0,0,0,.2);
+width:100%;
+max-width:720px;
+max-height:90vh;
+overflow:auto;
+background:#fff;
+border-radius:20px;
+box-shadow:0 25px 70px rgba(0,0,0,.2);
 }
 
 .modal-head{
- padding:20px;
- border-bottom:1px solid var(--border);
- display:flex;
- align-items:center;
- justify-content:space-between;
+padding:20px;
+border-bottom:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
 
-.modal-head h2{font-size:19px}
+.modal-head h2{
+font-size:19px;
+}
 
 .close{
- width:34px;
- height:34px;
- border:0;
- background:#f3f4f6;
- border-radius:9px;
- font-size:20px;
+width:34px;
+height:34px;
+border:0;
+background:#f3f4f6;
+border-radius:9px;
+font-size:20px;
 }
 
-.modal-body{padding:20px}
+.modal-body{
+padding:20px;
+}
 
 .tabs{
- display:flex;
- gap:5px;
- background:#f5f5f8;
- padding:4px;
- border-radius:11px;
- margin-bottom:20px;
+display:flex;
+gap:5px;
+background:#f5f5f8;
+padding:4px;
+border-radius:11px;
+margin-bottom:20px;
 }
 
 .tab{
- flex:1;
- border:0;
- background:transparent;
- padding:10px;
- border-radius:8px;
- color:var(--muted);
- font-size:13px;
+flex:1;
+border:0;
+background:transparent;
+padding:10px;
+border-radius:8px;
+color:var(--muted);
+font-size:13px;
 }
 
 .tab.active{
- background:#fff;
- color:var(--purple);
- font-weight:700;
- box-shadow:0 2px 6px rgba(0,0,0,.06);
+background:#fff;
+color:var(--purple);
+font-weight:700;
+box-shadow:0 2px 6px rgba(0,0,0,.06);
 }
 
-.panel{display:none}
-.panel.active{display:block}
+.panel{
+display:none;
+}
+
+.panel.active{
+display:block;
+}
 
 label{
- display:block;
- font-size:13px;
- font-weight:600;
- margin-bottom:7px;
+display:block;
+font-size:13px;
+font-weight:600;
+margin-bottom:7px;
 }
 
 input{
- width:100%;
- padding:12px;
- border:1px solid #dfe1e8;
- border-radius:9px;
- outline:none;
- margin-bottom:15px;
+width:100%;
+padding:12px;
+border:1px solid #dfe1e8;
+border-radius:9px;
+outline:none;
+margin-bottom:15px;
 }
 
 input:focus{
- border-color:var(--purple);
+border-color:var(--purple);
 }
 
 .readonly{
- background:#f5f6f8;
- color:#777;
+background:#f5f6f8;
+color:#777;
 }
 
 .upload{
- border:2px dashed #dddfea;
- border-radius:13px;
- padding:24px;
- text-align:center;
- margin-bottom:13px;
+border:2px dashed #dddfea;
+border-radius:13px;
+padding:24px;
+text-align:center;
+margin-bottom:13px;
 }
 
 .upload p{
- color:var(--muted);
- font-size:13px;
- margin-bottom:12px;
+color:var(--muted);
+font-size:13px;
+margin-bottom:12px;
 }
 
 .upload input{
- border:0;
- padding:0;
- margin:0;
+border:0;
+padding:0;
+margin:0;
 }
 
 .gallery{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
 }
 
 .photo{
- position:relative;
- border-radius:12px;
- overflow:hidden;
- background:#f4f4f6;
- aspect-ratio:1;
+position:relative;
+border-radius:12px;
+overflow:hidden;
+background:#f4f4f6;
+aspect-ratio:1;
 }
 
 .photo img{
- width:100%;
- height:100%;
- object-fit:cover;
- display:block;
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
 }
 
 .delete{
- position:absolute;
- right:7px;
- top:7px;
- width:32px;
- height:32px;
- border:0;
- border-radius:9px;
- background:rgba(255,255,255,.92);
- color:var(--danger);
- font-size:15px;
+position:absolute;
+right:7px;
+top:7px;
+width:32px;
+height:32px;
+border:0;
+border-radius:9px;
+background:rgba(255,255,255,.92);
+color:var(--danger);
+font-size:15px;
 }
 
 .message{
- display:none;
- padding:11px;
- border-radius:9px;
- margin-top:12px;
- font-size:13px;
+display:none;
+padding:11px;
+border-radius:9px;
+margin-top:12px;
+font-size:13px;
 }
 
 .message.success{
- display:block;
- background:#dcfce7;
- color:#166534;
+display:block;
+background:#dcfce7;
+color:#166534;
 }
 
 .message.error{
- display:block;
- background:#fee2e2;
- color:#991b1b;
+display:block;
+background:#fee2e2;
+color:#991b1b;
 }
 
 @media(max-width:850px){
- .profile-grid{
-  grid-template-columns:repeat(2,1fr);
- }
+.profile-grid{
+grid-template-columns:repeat(2,1fr);
+}
 }
 
 @media(max-width:600px){
- .header-inner{
-  height:65px;
-  padding:0 15px;
- }
+.header-inner{
+height:65px;
+padding:0 15px;
+}
 
- .layout{
-  padding:20px 14px 40px;
- }
+.layout{
+padding:20px 14px 40px;
+}
 
- .welcome h2{
-  font-size:23px;
- }
+.welcome h2{
+font-size:23px;
+}
 
- .stats{
-  grid-template-columns:1fr;
-  gap:10px;
- }
+.stats{
+grid-template-columns:1fr;
+gap:10px;
+}
 
- .profile-grid{
-  grid-template-columns:1fr;
- }
+.profile-grid{
+grid-template-columns:1fr;
+}
 
- .gallery{
-  grid-template-columns:repeat(2,1fr);
- }
+.gallery{
+grid-template-columns:repeat(2,1fr);
+}
 
- .brand p{
-  display:none;
- }
-
- .logout{
-  padding:8px 10px;
- }
+.brand p{
+display:none;
+}
 }
 </style>
 </head>
@@ -463,14 +468,12 @@ input:focus{
 <div class="header-inner">
 
 <div class="brand">
-
 <div class="brand-icon">🔐</div>
 
 <div>
 <h1>Owner Dashboard</h1>
 <p id="ownerEmail">Checking login...</p>
 </div>
-
 </div>
 
 <button class="logout" id="logoutBtn">
@@ -499,7 +502,6 @@ Logout
 </div>
 </div>
 
-
 <div class="stat">
 <div class="stat-icon">📸</div>
 <div>
@@ -507,7 +509,6 @@ Logout
 <div class="stat-label">Total Photos</div>
 </div>
 </div>
-
 
 <div class="stat">
 <div class="stat-icon">🟢</div>
@@ -558,7 +559,6 @@ Loading profiles...
 
 </div>
 
-
 <div class="modal-body">
 
 <label>QR Code</label>
@@ -568,7 +568,6 @@ id="newQr"
 placeholder="Example: TEST-003"
 >
 
-
 <label>Name 1</label>
 
 <input
@@ -576,14 +575,12 @@ id="newName1"
 placeholder="First person"
 >
 
-
 <label>Name 2</label>
 
 <input
 id="newName2"
 placeholder="Second person"
 >
-
 
 <label>Profile Password</label>
 
@@ -593,7 +590,6 @@ type="password"
 placeholder="Password for this profile"
 >
 
-
 <button class="primary" id="createProfileBtn">
 Create Profile
 </button>
@@ -601,9 +597,7 @@ Create Profile
 <div id="createMessage" class="message"></div>
 
 </div>
-
 </div>
-
 </div>
 
 
@@ -624,7 +618,6 @@ Manage Profile
 </button>
 
 </div>
-
 
 <div class="modal-body">
 
@@ -651,16 +644,13 @@ class="readonly"
 readonly
 >
 
-
 <label>Name 1</label>
 
 <input id="name1">
 
-
 <label>Name 2</label>
 
 <input id="name2">
-
 
 <button class="primary" id="saveProfile">
 Save Changes
@@ -685,7 +675,6 @@ accept="image/*"
 
 </div>
 
-
 <button class="primary" id="uploadBtn">
 Upload Photo
 </button>
@@ -699,20 +688,18 @@ Upload Photo
 </div>
 
 </div>
-
 </div>
-
 </div>
 
 
 <script type="module">
 
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient }
+from "https://esm.sh/@supabase/supabase-js@2";
 
 
 const SUPABASE_URL =
 "https://auoizmzyojlprmgfhuhf.supabase.co";
-
 
 const SUPABASE_KEY =
 "sb_publishable_86ZOljALd-9xCiCTOgvpkA_HGTxCGgi";
@@ -757,31 +744,47 @@ element.className =
 }
 
 
-function escapeHtml(value){
-
-return String(value ?? "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* LOGIN */
+/* CHECK OWNER LOGIN */
 
 async function checkLogin(){
+
+try{
 
 const {
 data,
 error
-} = await supabase.auth.getUser();
+} =
+await supabase.auth.getUser();
 
 
-if(error || !data.user){
+if(error || !data || !data.user){
 
-window.location.href = "index.html";
+ownerEmail.textContent =
+"Not logged in";
+
+profileGrid.innerHTML = `
+<div class="empty">
+<h3>Owner login required</h3>
+<br>
+<p>Please login from the Owner login page first.</p>
+<br>
+<button
+class="primary"
+id="goLogin"
+>
+Go to Owner Login
+</button>
+</div>
+`;
+
+document
+.getElementById("goLogin")
+.addEventListener(
+"click",
+function(){
+window.location.href="index.html";
+}
+);
 
 return false;
 }
@@ -794,12 +797,29 @@ currentUser.email || "Owner";
 
 return true;
 
+}catch(error){
+
+console.error(error);
+
+profileGrid.innerHTML = `
+<div class="empty">
+Could not verify owner login.<br><br>
+${error.message || ""}
+</div>
+`;
+
+return false;
+
+}
+
 }
 
 
 /* LOAD PROFILES */
 
 async function loadProfiles(){
+
+if(!currentUser) return;
 
 profileGrid.innerHTML =
 '<div class="loading">Loading profiles...</div>';
@@ -808,7 +828,8 @@ profileGrid.innerHTML =
 const {
 data,
 error
-} = await supabase
+} =
+await supabase
 .from("profiles")
 .select(
 "id,qr_code,name_1,name_2,created_at"
@@ -828,13 +849,14 @@ if(error){
 console.error(error);
 
 profileGrid.innerHTML =
-'<div class="empty">' +
-'Could not load profiles.<br><br>' +
-escapeHtml(error.message) +
-'</div>';
+`
+<div class="empty">
+Could not load profiles.<br><br>
+${escapeHtml(error.message)}
+</div>
+`;
 
 return;
-
 }
 
 
@@ -849,22 +871,23 @@ allProfiles.length;
 if(!allProfiles.length){
 
 document.getElementById("photoCount")
-.textContent = "0";
+.textContent="0";
 
 profileGrid.innerHTML =
-'<div class="empty">' +
-'No profiles yet.<br><br>' +
-'Create your first profile.' +
-'</div>';
+`
+<div class="empty">
+No profiles yet.<br><br>
+Create your first profile.
+</div>
+`;
 
 return;
-
 }
 
 
-profileGrid.innerHTML = "";
+profileGrid.innerHTML="";
 
-let totalPhotos = 0;
+let totalPhotos=0;
 
 
 for(const profile of allProfiles){
@@ -872,7 +895,8 @@ for(const profile of allProfiles){
 const {
 count,
 error:photoError
-} = await supabase
+} =
+await supabase
 .from("photos")
 .select(
 "id",
@@ -898,10 +922,10 @@ totalPhotos += count || 0;
 const card =
 document.createElement("div");
 
-card.className = "profile-card";
+card.className="profile-card";
 
 
-card.innerHTML = `
+card.innerHTML=`
 
 <div class="couple-avatar">
 ❤️
@@ -928,14 +952,17 @@ Manage →
 </button>
 
 </div>
-
 `;
 
 
 card
 .querySelector(".manage")
-.onclick =
-() => openManage(profile);
+.addEventListener(
+"click",
+function(){
+openManage(profile);
+}
+);
 
 
 profileGrid.appendChild(card);
@@ -944,8 +971,21 @@ profileGrid.appendChild(card);
 
 
 document.getElementById("photoCount")
-.textContent =
-totalPhotos;
+.textContent=totalPhotos;
+
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value){
+
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
@@ -956,13 +996,13 @@ document
 .getElementById("createBtn")
 .addEventListener(
 "click",
-() => {
+function(){
 
 document
 .getElementById("createMessage")
-.className = "message";
+.className="message";
 
-createModal.style.display = "flex";
+createModal.style.display="flex";
 
 }
 );
@@ -972,9 +1012,9 @@ document
 .getElementById("closeCreate")
 .addEventListener(
 "click",
-() => {
+function(){
 
-createModal.style.display = "none";
+createModal.style.display="none";
 
 }
 );
@@ -986,7 +1026,7 @@ document
 .getElementById("createProfileBtn")
 .addEventListener(
 "click",
-async () => {
+async function(){
 
 const qr =
 document
@@ -994,20 +1034,17 @@ document
 .value
 .trim();
 
-
 const n1 =
 document
 .getElementById("newName1")
 .value
 .trim();
 
-
 const n2 =
 document
 .getElementById("newName2")
 .value
 .trim();
-
 
 const password =
 document
@@ -1031,8 +1068,8 @@ return;
 const button =
 document.getElementById("createProfileBtn");
 
-button.disabled = true;
-button.textContent = "Creating...";
+button.disabled=true;
+button.textContent="Creating...";
 
 
 const {
@@ -1049,8 +1086,8 @@ p_password:password
 );
 
 
-button.disabled = false;
-button.textContent = "Create Profile";
+button.disabled=false;
+button.textContent="Create Profile";
 
 
 if(error){
@@ -1076,18 +1113,18 @@ true
 );
 
 
-document.getElementById("newQr").value = "";
-document.getElementById("newName1").value = "";
-document.getElementById("newName2").value = "";
-document.getElementById("newPassword").value = "";
+document.getElementById("newQr").value="";
+document.getElementById("newName1").value="";
+document.getElementById("newName2").value="";
+document.getElementById("newPassword").value="";
 
 
 setTimeout(
-() => {
+async function(){
 
-createModal.style.display = "none";
+createModal.style.display="none";
 
-loadProfiles();
+await loadProfiles();
 
 },
 700
@@ -1101,40 +1138,39 @@ loadProfiles();
 
 function openManage(profile){
 
-currentProfile = profile;
+currentProfile=profile;
 
 
 document.getElementById("manageTitle")
-.textContent =
-profile.name_1 +
-" ❤️ " +
+.textContent=
+profile.name_1+
+" ❤️ "+
 profile.name_2;
 
 
 document.getElementById("profileCode")
-.value =
+.value=
 profile.qr_code;
 
 
 document.getElementById("name1")
-.value =
+.value=
 profile.name_1;
 
 
 document.getElementById("name2")
-.value =
+.value=
 profile.name_2;
 
 
 document.getElementById("profileMessage")
-.className = "message";
-
+.className="message";
 
 document.getElementById("uploadMessage")
-.className = "message";
+.className="message";
 
 
-manageModal.style.display = "flex";
+manageModal.style.display="flex";
 
 switchTab("details");
 
@@ -1147,11 +1183,11 @@ document
 .getElementById("closeManage")
 .addEventListener(
 "click",
-() => {
+function(){
 
-manageModal.style.display = "none";
+manageModal.style.display="none";
 
-currentProfile = null;
+currentProfile=null;
 
 }
 );
@@ -1162,11 +1198,11 @@ currentProfile = null;
 document
 .querySelectorAll(".tab")
 .forEach(
-tab => {
+function(tab){
 
 tab.addEventListener(
 "click",
-() => {
+function(){
 
 switchTab(tab.dataset.tab);
 
@@ -1182,11 +1218,11 @@ function switchTab(name){
 document
 .querySelectorAll(".tab")
 .forEach(
-tab => {
+function(tab){
 
 tab.classList.toggle(
 "active",
-tab.dataset.tab === name
+tab.dataset.tab===name
 );
 
 }
@@ -1196,7 +1232,7 @@ tab.dataset.tab === name
 document
 .querySelectorAll(".panel")
 .forEach(
-panel => {
+function(panel){
 
 panel.classList.remove("active");
 
@@ -1205,26 +1241,24 @@ panel.classList.remove("active");
 
 
 document
-.getElementById(name + "Panel")
+.getElementById(name+"Panel")
 .classList.add("active");
 
 
-if(name === "photos"){
-
+if(name==="photos"){
 loadPhotos();
-
 }
 
 }
 
 
-/* SAVE DETAILS */
+/* SAVE PROFILE */
 
 document
 .getElementById("saveProfile")
 .addEventListener(
 "click",
-async () => {
+async function(){
 
 if(!currentProfile) return;
 
@@ -1234,7 +1268,6 @@ document
 .getElementById("name1")
 .value
 .trim();
-
 
 const n2 =
 document
@@ -1259,8 +1292,8 @@ return;
 const button =
 document.getElementById("saveProfile");
 
-button.disabled = true;
-button.textContent = "Saving...";
+button.disabled=true;
+button.textContent="Saving...";
 
 
 const {
@@ -1282,13 +1315,11 @@ currentUser.id
 );
 
 
-button.disabled = false;
-button.textContent = "Save Changes";
+button.disabled=false;
+button.textContent="Save Changes";
 
 
 if(error){
-
-console.error(error);
 
 showMessage(
 document.getElementById("profileMessage"),
@@ -1302,8 +1333,13 @@ return;
 }
 
 
-currentProfile.name_1 = n1;
-currentProfile.name_2 = n2;
+currentProfile.name_1=n1;
+currentProfile.name_2=n2;
+
+
+document.getElementById("manageTitle")
+.textContent=
+n1+" ❤️ "+n2;
 
 
 showMessage(
@@ -1311,11 +1347,6 @@ document.getElementById("profileMessage"),
 "Profile updated successfully.",
 true
 );
-
-
-document.getElementById("manageTitle")
-.textContent =
-n1 + " ❤️ " + n2;
 
 
 await loadProfiles();
@@ -1330,14 +1361,13 @@ async function loadPhotos(){
 
 if(!currentProfile){
 
-gallery.innerHTML = "";
-
+gallery.innerHTML="";
 return;
 
 }
 
 
-gallery.innerHTML =
+gallery.innerHTML=
 '<div class="loading">Loading photos...</div>';
 
 
@@ -1362,13 +1392,13 @@ currentProfile.id
 
 if(error){
 
-console.error(error);
-
-gallery.innerHTML =
-'<div class="empty">' +
-'Could not load photos.<br><br>' +
-escapeHtml(error.message) +
-'</div>';
+gallery.innerHTML=
+`
+<div class="empty">
+Could not load photos.<br><br>
+${escapeHtml(error.message)}
+</div>
+`;
 
 return;
 
@@ -1377,17 +1407,19 @@ return;
 
 if(!data || !data.length){
 
-gallery.innerHTML =
-'<div class="empty">' +
-'No photos uploaded yet.' +
-'</div>';
+gallery.innerHTML=
+`
+<div class="empty">
+No photos uploaded yet.
+</div>
+`;
 
 return;
 
 }
 
 
-gallery.innerHTML = "";
+gallery.innerHTML="";
 
 
 for(const photo of data){
@@ -1408,7 +1440,6 @@ photo.file_path,
 if(signedError){
 
 console.error(signedError);
-
 continue;
 
 }
@@ -1417,10 +1448,10 @@ continue;
 const item =
 document.createElement("div");
 
-item.className = "photo";
+item.className="photo";
 
 
-item.innerHTML = `
+item.innerHTML=`
 
 <img
 src="${signed.signedUrl}"
@@ -1439,8 +1470,12 @@ title="Delete photo"
 
 item
 .querySelector(".delete")
-.onclick =
-() => deletePhoto(photo);
+.addEventListener(
+"click",
+function(){
+deletePhoto(photo);
+}
+);
 
 
 gallery.appendChild(item);
@@ -1454,13 +1489,9 @@ gallery.appendChild(item);
 
 async function deletePhoto(photo){
 
-const yes =
-confirm(
+if(!confirm(
 "Are you sure you want to delete this photo?"
-);
-
-
-if(!yes) return;
+)) return;
 
 
 const {
@@ -1475,8 +1506,6 @@ photo.file_path
 
 
 if(storageError){
-
-console.error(storageError);
 
 showMessage(
 document.getElementById("uploadMessage"),
@@ -1508,12 +1537,10 @@ currentProfile.id
 
 if(dbError){
 
-console.error(dbError);
-
 showMessage(
 document.getElementById("uploadMessage"),
 dbError.message ||
-"Photo file deleted but database update failed.",
+"Photo deleted from storage but database update failed.",
 false
 );
 
@@ -1541,7 +1568,7 @@ document
 .getElementById("uploadBtn")
 .addEventListener(
 "click",
-async () => {
+async function(){
 
 if(!currentProfile) return;
 
@@ -1549,8 +1576,7 @@ if(!currentProfile) return;
 const input =
 document.getElementById("photoInput");
 
-const file =
-input.files[0];
+const file=input.files[0];
 
 
 if(!file){
@@ -1582,8 +1608,8 @@ return;
 const button =
 document.getElementById("uploadBtn");
 
-button.disabled = true;
-button.textContent = "Uploading...";
+button.disabled=true;
+button.textContent="Uploading...";
 
 
 const extension =
@@ -1593,18 +1619,17 @@ file.name.includes(".")
 
 
 const fileName =
-Date.now() +
-"-" +
+Date.now()+
+"-"+
 Math.random()
 .toString(36)
-.substring(2,10) +
-"." +
-extension;
+.substring(2,10)+
+"."+extension;
 
 
 const filePath =
-currentProfile.qr_code +
-"/" +
+currentProfile.qr_code+
+"/"+
 fileName;
 
 
@@ -1626,10 +1651,8 @@ upsert:false
 
 if(uploadError){
 
-console.error(uploadError);
-
-button.disabled = false;
-button.textContent = "Upload Photo";
+button.disabled=false;
+button.textContent="Upload Photo";
 
 showMessage(
 document.getElementById("uploadMessage"),
@@ -1656,16 +1679,13 @@ file_path:filePath
 
 if(dbError){
 
-console.error(dbError);
-
 await supabase
 .storage
 .from("Photos")
 .remove([filePath]);
 
-
-button.disabled = false;
-button.textContent = "Upload Photo";
+button.disabled=false;
+button.textContent="Upload Photo";
 
 showMessage(
 document.getElementById("uploadMessage"),
@@ -1679,10 +1699,10 @@ return;
 }
 
 
-button.disabled = false;
-button.textContent = "Upload Photo";
+button.disabled=false;
+button.textContent="Upload Photo";
 
-input.value = "";
+input.value="";
 
 
 showMessage(
@@ -1705,19 +1725,19 @@ document
 .getElementById("logoutBtn")
 .addEventListener(
 "click",
-async () => {
+async function(){
 
 const button =
 document.getElementById("logoutBtn");
 
-button.disabled = true;
-button.textContent = "Logging out...";
+button.disabled=true;
+button.textContent="Logging out...";
 
 
 await supabase.auth.signOut();
 
 
-window.location.href = "index.html";
+window.location.href="index.html";
 
 }
 );
@@ -1727,11 +1747,11 @@ window.location.href = "index.html";
 
 createModal.addEventListener(
 "click",
-e => {
+function(event){
 
-if(e.target === createModal){
+if(event.target===createModal){
 
-createModal.style.display = "none";
+createModal.style.display="none";
 
 }
 
@@ -1741,13 +1761,13 @@ createModal.style.display = "none";
 
 manageModal.addEventListener(
 "click",
-e => {
+function(event){
 
-if(e.target === manageModal){
+if(event.target===manageModal){
 
-manageModal.style.display = "none";
+manageModal.style.display="none";
 
-currentProfile = null;
+currentProfile=null;
 
 }
 
