@@ -1451,4 +1451,250 @@ async function deletePhoto(photo){
  }
 
 
- messag
+ message(
+  document.getElementById("uploadMessage"),
+  "Photo deleted successfully.",
+  true
+ );
+
+
+ await loadPhotos();
+ await loadProfiles();
+
+}
+
+
+/* UPLOAD PHOTO */
+
+document
+ .getElementById("uploadBtn")
+ .addEventListener(
+  "click",
+  async () => {
+
+   if(!currentProfile) return;
+
+
+   const input =
+    document.getElementById("photoInput");
+
+   const file =
+    input.files[0];
+
+
+   if(!file){
+
+    message(
+     document.getElementById("uploadMessage"),
+     "Please select a photo first.",
+     false
+    );
+
+    return;
+   }
+
+
+   if(!file.type.startsWith("image/")){
+
+    message(
+     document.getElementById("uploadMessage"),
+     "Please select an image file.",
+     false
+    );
+
+    return;
+   }
+
+
+   const button =
+    document.getElementById("uploadBtn");
+
+   button.disabled = true;
+   button.textContent = "Uploading...";
+
+
+   const extension =
+    file.name.includes(".")
+     ? file.name.split(".").pop()
+     : "jpg";
+
+
+   const fileName =
+    Date.now() +
+    "-" +
+    Math.random()
+     .toString(36)
+     .substring(2,10) +
+    "." +
+    extension;
+
+
+   const filePath =
+    currentProfile.qr_code +
+    "/" +
+    fileName;
+
+
+   const {
+    error:uploadError
+   } =
+   await supabase
+    .storage
+    .from("Photos")
+    .upload(
+     filePath,
+     file,
+     {
+      cacheControl:"3600",
+      upsert:false
+     }
+    );
+
+
+   if(uploadError){
+
+    console.error(uploadError);
+
+    button.disabled = false;
+    button.textContent = "Upload Photo";
+
+    message(
+     document.getElementById("uploadMessage"),
+     uploadError.message || "Upload failed.",
+     false
+    );
+
+    return;
+   }
+
+
+   const {
+    error:dbError
+   } =
+   await supabase
+    .from("photos")
+    .insert({
+     profile_id:currentProfile.id,
+     file_path:filePath
+    });
+
+
+   if(dbError){
+
+    console.error(dbError);
+
+    await supabase
+     .storage
+     .from("Photos")
+     .remove([filePath]);
+
+
+    button.disabled = false;
+    button.textContent = "Upload Photo";
+
+    message(
+     document.getElementById("uploadMessage"),
+     dbError.message || "Could not save photo.",
+     false
+    );
+
+    return;
+   }
+
+
+   button.disabled = false;
+   button.textContent = "Upload Photo";
+
+   input.value = "";
+
+
+   message(
+    document.getElementById("uploadMessage"),
+    "Photo uploaded successfully.",
+    true
+   );
+
+
+   await loadPhotos();
+   await loadProfiles();
+
+  }
+ );
+
+
+/* LOGOUT */
+
+document
+ .getElementById("logoutBtn")
+ .addEventListener(
+  "click",
+  async () => {
+
+   const button =
+    document.getElementById("logoutBtn");
+
+   button.disabled = true;
+   button.textContent = "Logging out...";
+
+
+   await supabase.auth.signOut();
+
+
+   window.location.href = "index.html";
+
+  }
+ );
+
+
+/* CLOSE MODALS BY OUTSIDE CLICK */
+
+createModal.addEventListener(
+ "click",
+ e => {
+
+  if(e.target === createModal){
+
+   createModal.style.display = "none";
+
+  }
+
+ }
+);
+
+
+manageModal.addEventListener(
+ "click",
+ e => {
+
+  if(e.target === manageModal){
+
+   manageModal.style.display = "none";
+
+   currentProfile = null;
+
+  }
+
+ }
+);
+
+
+/* START */
+
+async function init(){
+
+ const loggedIn =
+  await checkLogin();
+
+ if(!loggedIn) return;
+
+ await loadProfiles();
+
+}
+
+
+init();
+
+</script>
+
+</body>
+</html>
